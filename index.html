@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Way Industrial Company Limited</title>
+    <style>
+        /* General Layout */
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; color: #333; }
+
+        /* Top Navigation */
+        .navbar { 
+            display: flex; align-items: center; justify-content: space-between; 
+            padding: 15px 5%; background: #ffffff; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .logo-area { display: flex; align-items: center; gap: 15px; font-weight: bold; font-size: 1.2rem; }
+        .nav-links a { 
+            margin-left: 20px; text-decoration: none; color: #333; font-weight: 600; 
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: #b71c1c; }
+        .nav-links a.active { color: #b71c1c; border-bottom: 2px solid #b71c1c; padding-bottom: 5px; }
+
+        /* Hero Section */
+        .hero { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), #333; 
+            color: white; padding: 100px 5%; text-align: left;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 15px; line-height: 1.2; }
+        .hero p { font-size: 1.4rem; margin-bottom: 30px; }
+        .cta-btn { 
+            background: #b71c1c; color: white; padding: 15px 30px; 
+            border: none; border-radius: 5px; font-size: 1.1rem; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <nav class="navbar">
+        <div class="logo-area">
+            <img src="Success Way Industrial Company Logo.jpeg" alt="Success Way Logo" style="height: 60px; width: auto;">
+            <span>Success Way Industrial Company Limited</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="contactinfo.html">Contact</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Services</a>
+            <a href="products.html">Selling Products</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Your Trusted Quality and Sourcing Bridge:<br>From Hong Kong to Mainland China Factories</h1>
+        <p>End-to-End Industrial Sourcing, Technical Auditing, and Precision Quality Inspection</p>
+        <button class="cta-btn" onclick="window.location.href='contactform.html'">Contact Us</button>
+    </section>
+
+</body>
+</html>
