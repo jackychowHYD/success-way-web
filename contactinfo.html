@@ -2,33 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Contact Support | Success Way Industrial</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; }
-        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; background: #ffffff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: relative; z-index: 10; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background: #f9f9f9; }
+        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; background: #ffffff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .nav-links a { margin-left: 20px; text-decoration: none; color: #333; font-weight: 600; }
-        .main-content { position: relative; padding: 60px 5%; min-height: 70vh; }
-        .main-content::before {
-            content: "";
-            background-image: url('Success Way Industrial Company Logo.jpeg');
-            background-position: center; background-repeat: no-repeat; background-size: 30%;
-            opacity: 0.07; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+        
+        .header-section { text-align: center; padding: 50px 5%; background: #0a192f; color: white; }
+        
+        /* Support Blocks - Updated to Green */
+        .support-container { display: flex; justify-content: center; gap: 30px; padding: 40px 5%; margin-top: -50px; }
+        .support-card { 
+            background: #e8f5e9; /* Light green background */
+            border: 2px solid #2e7d32; /* Darker green border */
+            padding: 30px; border-radius: 12px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            width: 320px; text-align: center; 
         }
-        .content-wrapper { position: relative; z-index: 5; max-width: 900px; margin: 0 auto; }
-        h2 { color: #b71c1c; }
+        .support-card h3 { color: #1b5e20; margin-bottom: 20px; }
+        .contact-info { text-align: left; margin: 20px 0; font-size: 0.9rem; color: #2e7d32; }
+        .contact-info p { margin: 8px 0; font-weight: 600; }
     </style>
 </head>
 <body>
+
     <nav class="navbar">
         <div class="logo-area"><img src="Success Way Industrial Company Logo.jpeg" style="height: 50px;"></div>
         <div class="nav-links">
             <a href="index.html">Home</a><a href="contactinfo.html">Contact</a><a href="about.html">About Us</a><a href="services.html">Services</a><a href="products.html">Selling Products</a>
         </div>
     </nav>
-    <section class="main-content">
-        <div class="content-wrapper">
-            <h2>Contact Information</h2> <!-- CHANGE THIS -->
-            <p>"Email: hyd2018hk@gmail.com"<p>"Phone: [Insert Phone Number]"<p>"Address: [Insert Office Address]"</p> <!-- CHANGE THIS -->
+
+    <div class="header-section">
+        <h1>How can we help?</h1>
+        <p>Get in touch and let us know how we can help.</p>
+    </div>
+
+    <div class="support-container">
+        <!-- Product Support Block -->
+        <div class="support-card">
+            <h3>Product Support</h3>
+            <div class="contact-info">
+                <p>Name: Simon Cheung</p>
+                <p>Phone: 852-99998888</p>
+                <p>Email: simoncheung@gmail.com</p>
+            </div>
         </div>
-    </section>
+
+        <!-- Service Support Block -->
+        <div class="support-card">
+            <h3>Service Support</h3>
+            <div class="contact-info">
+                <p>Name: Jacky Chow</p>
+                <p>Phone: 852-88889999</p>
+                <p>Email: jackychow@gmail.com</p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
