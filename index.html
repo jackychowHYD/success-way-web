@@ -2,66 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Success Way Industrial Company Limited</title>
+    <title>Home | Success Way Industrial</title>
     <style>
-        body, h1, h3, p, ul { margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body, h1, p { margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
         
-        /* Full-screen background image */
-        body {
-            background-image: url('Gemini_Generated_Image_395g6h395g6h395g.png');
+        /* Background Styling: 50% transparency overlay + background image */
+        body { 
+            background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
+                              url('Gemini_Generated_Image_395g6h395g6h395g.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            min-height: 100vh;
-            color: #333;
+            background-color: #f4f7f6;
         }
-
+        
         /* Navigation Bar */
         .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 5%;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 15px 5%; background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;
         }
         .logo-area { display: flex; align-items: center; font-weight: bold; }
         .logo-img { height: 40px; margin-right: 15px; }
-        
         .nav-links a { margin-left: 20px; text-decoration: none; color: #333; font-weight: 600; }
         .nav-links a:hover { color: #b71c1c; }
-        
-        /* Bottom Contact Button Style */
-        .bottom-contact-btn {
-            display: inline-block;
-            margin-top: 30px;
-            background-color: #b71c1c;
-            color: white !important;
-            padding: 12px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .bottom-contact-btn:hover { background-color: #8e1515; }
 
-        /* Solid White Block Wrapper with 50% transparency */
+        /* Content Area - White block removed */
         .content-wrapper {
-            padding: 60px 5%;
-            background: rgba(255, 255, 255, 0.8); 
-            max-width: 900px;
-            margin: 50px auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            text-align: center;
+            padding: 50px 5%; max-width: 900px; margin: 100px auto;
+            text-align: center; text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
         }
+        .main-title { font-size: 2.5rem; color: #b71c1c; margin-bottom: 15px; }
+        .sub-title { font-size: 1.25rem; color: #333; margin-bottom: 30px; font-weight: 600; }
 
-        /* Headings */
-        .main-heading { color: #b71c1c; font-size: 2.2rem; margin-bottom: 15px; }
-        .sub-heading { font-size: 1.3rem; color: #222; margin-bottom: 30px; font-weight: 500; }
+        /* Contact Button */
+        .contact-btn {
+            display: inline-block; padding: 15px 30px; background-color: #b71c1c;
+            color: white; text-decoration: none; border-radius: 5px; font-weight: bold;
+        }
+        .contact-btn:hover { background-color: #8e1515; }
     </style>
 </head>
 <body>
@@ -81,11 +60,9 @@
     </nav>
 
     <div class="content-wrapper">
-        <h1 class="main-heading">Your Trusted Quality and Sourcing Bridge : From Hong Kong to Mainland China Factories</h1>
-        <p class="sub-heading">End-to-End Industrial Sourcing, Technical Auditing, and Precision Quality Inspection</p>
-        
-        <!-- Button linking to contactform.html -->
-        <a href="contactform.html" class="bottom-contact-btn">Contact Us</a>
+        <h1 class="main-title">Your Trusted Quality and Sourcing Bridge : From Hong Kong to Mainland China Factories</h1>
+        <p class="sub-title">End-to-End Industrial Sourcing, Technical Auditing, and Precision Quality Inspection</p>
+        <a href="contactform.html" class="contact-btn">Contact Us</a>
     </div>
 
 </body>
