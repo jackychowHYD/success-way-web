@@ -7,19 +7,22 @@
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; color: #333; background: #f9f9f9; }
         
         /* Navigation Bar */
-        <nav class="navbar">
-        <div class="logo-area">
-            <img src="Success Way Industrial Company Logo.jpeg" alt="Logo" class="logo-img">
-            <span>Success Way Industrial Company Limited</span>
-        </div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Selling Products</a>
-            <a href="contactinfo.html">Contact</a>
-        </div>
-    </nav>
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 5%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo-area { display: flex; align-items: center; font-weight: bold; color: #333; }
+        .logo-img { height: 40px; margin-right: 15px; }
+        
+        .nav-links a { margin-left: 20px; text-decoration: none; color: #333; font-weight: 600; }
+        .nav-links a:hover { color: #b71c1c; }
 
         /* Page Background/Watermark */
         .main-content { position: relative; min-height: 80vh; background-color: #f9f9f9; padding-bottom: 50px; }
@@ -39,10 +42,11 @@
             display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 30px; padding: 20px 5%; position: relative; z-index: 5; 
         }
-        .product-card { background: white; padding: 20px; text-align: center; border: 1px solid #eee; transition: transform 0.2s; }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        /* Product Card - White background & shadow/border removed */
+        .product-card { background: transparent; padding: 20px; text-align: center; border: none; }
         .product-card img { width: 100%; height: 250px; object-fit: contain; margin-bottom: 15px; border-radius: 4px; }
-        h3 { font-size: 1.2rem; margin: 10px 0; color: #333; }
+        h3 { font-size: 1.2rem; margin: 10px 0; color: #333; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
         
         /* Button Style */
         .order-btn {
@@ -55,38 +59,19 @@
 </head>
 <body>
 
-   <nav class="navbar">
-    <div class="logo-area">
-        <img src="Success Way Industrial Company Logo.jpeg" alt="Logo" class="logo-img">
-        <span>Success Way Industrial Company Limited</span>
-    </div>
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="services.html">Services</a>
-        <a href="products.html">Selling Products</a>
-        <a href="contactinfo.html">Contact</a>
-    </div>
-</nav>
-
-<style>
-    .navbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 15px 5%;
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-    }
-    .logo-area { display: flex; align-items: center; font-weight: bold; color: #333; }
-    .logo-img { height: 40px; margin-right: 15px; }
-    
-    .nav-links a { margin-left: 20px; text-decoration: none; color: #333; font-weight: 600; }
-    .nav-links a:hover { color: #b71c1c; }
-</style>
+    <nav class="navbar">
+        <div class="logo-area">
+            <img src="Success Way Industrial Company Logo.jpeg" alt="Logo" class="logo-img">
+            <span>Success Way Industrial Company Limited</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Services</a>
+            <a href="products.html">Selling Products</a>
+            <a href="contactinfo.html">Contact</a>
+        </div>
+    </nav>
 
     <section class="main-content">
         <div class="header-section">
@@ -96,22 +81,8 @@
         <div class="product-grid">
             <!-- Product 1 -->
             <div class="product-card">
-                <img src="XT60andXT90.jpeg" alt="XT60/XT90 Connector">
-                <h3>XT60/XT90 Connector</h3>
-                <button class="order-btn" onclick="window.open('https://www.google.com.hk/?gfe_rd=cr&ei=DBKDWIygCdeC9AXwmpWICA', '_blank')">Press to Order Product</button>
-            </div>
-
-            <!-- Product 2 -->
-            <div class="product-card">
                 <img src="switches.jpeg" alt="Industrial Switches">
                 <h3>Industrial Switches</h3>
-                <button class="order-btn" onclick="window.open('https://www.google.com.hk/?gfe_rd=cr&ei=DBKDWIygCdeC9AXwmpWICA', '_blank')">Press to Order Product</button>
-            </div>
-
-            <!-- Product 3 -->
-            <div class="product-card">
-                <img src="water filter.jpeg" alt="Water Purifier">
-                <h3>Water Purifier</h3>
                 <button class="order-btn" onclick="window.open('https://www.google.com.hk/?gfe_rd=cr&ei=DBKDWIygCdeC9AXwmpWICA', '_blank')">Press to Order Product</button>
             </div>
         </div>
