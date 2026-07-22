@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products | Success Way Industrial</title>
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; color: #333; background: #f9f9f9; }
@@ -43,7 +44,6 @@
             gap: 30px; padding: 20px 5%; position: relative; z-index: 5; 
         }
         
-        /* Product Card - White background & shadow/border removed */
         .product-card { background: transparent; padding: 20px; text-align: center; border: none; }
         .product-card img { width: 100%; height: 250px; object-fit: contain; margin-bottom: 15px; border-radius: 4px; }
         h3 { font-size: 1.2rem; margin: 10px 0; color: #333; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
@@ -55,6 +55,18 @@
             transition: background 0.3s;
         }
         .order-btn:hover { background: #8e1515; }
+
+        /* Mobile Adjustments (Portrait) */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; text-align: center; gap: 10px; }
+            .logo-area { flex-direction: column; text-align: center; }
+            .logo-img { margin-right: 0; margin-bottom: 5px; }
+            .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+            .nav-links a { margin-left: 0; font-size: 0.9rem; }
+            .header-section { padding: 25px 5% 10px; }
+            h1 { font-size: 1.8rem; }
+            .product-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>

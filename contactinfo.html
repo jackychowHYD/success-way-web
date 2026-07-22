@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | Success Way Industrial</title>
     <style>
         body, h1, h2, p { margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
@@ -17,7 +18,7 @@
             background-color: #f4f7f6;
         }
 
-        /* Navigation Bar - Consistent with index.html */
+        /* Navigation Bar */
         .navbar {
             display: flex;
             align-items: center;
@@ -64,6 +65,19 @@
         }
         .info-block h2 { color: #2e7d32; text-align: center; margin-bottom: 20px; }
         .info-block p { margin: 10px 0; color: #333; font-weight: 500; }
+
+        /* Mobile Adjustments (Portrait) */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; text-align: center; gap: 10px; }
+            .logo-area { flex-direction: column; text-align: center; }
+            .logo-img { margin-right: 0; margin-bottom: 5px; }
+            .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+            .nav-links a { margin-left: 0; font-size: 0.9rem; }
+            .header-section { padding: 40px 15px; }
+            .header-section h1 { font-size: 1.8rem; }
+            .container { flex-direction: column; align-items: center; margin-top: 20px; padding: 20px 5%; }
+            .info-block { width: 100%; box-sizing: border-box; }
+        }
     </style>
 </head>
 <body>
@@ -84,7 +98,6 @@
 
     <div class="header-section">
         <h1>How can we help?</h1>
-        <!-- Bolded Text Below -->
         <p><b>Get in touch and let us know how we can help.</b></p>
     </div>
 
