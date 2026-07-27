@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Center | Success Way Industrial</title>
+    <style>
+        body, h1, h2, h3, p { margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        
+        body { 
+            background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
+                              url('Gemini_Generated_Image_395g6h395g6h395g.png');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            background-color: #f4f7f6; color: #333;
+        }
+
+        .navbar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 15px 5%; background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;
+        }
+        .logo-area { display: flex; align-items: center; font-weight: bold; }
+        .logo-img { height: 40px; margin-right: 15px; }
+        
+        .nav-links a { 
+            text-decoration: none; color: #333; font-weight: 600; 
+            background-color: #ffd700; padding: 8px 16px; border-radius: 4px; 
+            transition: background-color 0.3s; display: inline-block;
+        }
+        .nav-links a:hover { background-color: #e6c200; color: #000; }
+
+        .header-section { text-align: center; padding: 30px 5% 10px; }
+        .header-section h1 { color: #b71c1c; font-size: 2.2rem; margin-bottom: 5px; }
+        .badge { display: inline-block; padding: 4px 12px; background: #e0e0e0; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
+        
+        /* Admin Controls Styling */
+        .admin-panel {
+            background: #fff; border: 2px dashed #b71c1c; border-radius: 8px;
+            max-width: 950px; margin: 20px auto; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .admin-panel h2 { color: #b71c1c; font-size: 1.3rem; margin-bottom: 15px; }
+        .admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .admin-box { background: #fdf8f8; padding: 15px; border-radius: 6px; border: 1px solid #f0c0c0; }
+        .admin-box h3 { margin-bottom: 10px; color: #333; font-size: 1rem; }
+        .admin-box input, .admin-box select { width: 100%; padding: 8px; margin-bottom: 10px; box-sizing: border-box; }
+        
+        .admin-btn { background: #b71c1c; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; }
+        .admin-btn:hover { background: #8e1515; }
+
+        /* User List in Admin Panel */
+        .user-list { list-style: none; padding: 0; margin: 10px 0 0 0; max-height: 120px; overflow-y: auto; border: 1px solid #ddd; border-radius: 4px; background: #fff; }
+        .user-item { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; border-bottom: 1px solid #eee; font-size: 0.85rem; }
+        .user-item:last-child { border-bottom: none; }
+        .del-user-btn { background: #ff4d4d; color: white; border: none; border-radius: 3px; padding: 2px 6px; cursor: pointer; font-size: 0.75rem; }
+
+        /* Sections Grid Layout */
+        .sections-container {
+            max-width: 1000px; margin: 30px auto 40px; padding: 0 5%;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 25px;
+        }
+
+        .doc-card {
+            background: rgba(255, 255, 255, 0.95); border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-top: 5px solid #b71c1c; padding: 25px;
+        }
+        .doc-card h2 {
+            color: #b71c1c; font-size: 1.4rem; margin-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0; padding-bottom: 10px;
+        }
+
+        .doc-list { list-style: none; padding: 0; margin: 0; }
+        .doc-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #e0e0e0; }
+        .doc-info { display: flex; flex-direction: column; gap: 3px; }
+        .doc-title { font-weight: 600; color: #333; font-size: 0.95rem; }
+        .doc-meta { font-size: 0.8rem; color: #777; }
+        .user-tag { color: #b71c1c; font-weight: bold; }
+
+        .btn-group { display: flex; gap: 8px; }
+        .download-btn {
+            background-color: #ffd700; color: #333; text-decoration: none; padding: 6px 12px;
+            border-radius: 4px; font-weight: 600; font-size: 0.85rem;
+        }
+        .delete-btn {
+            background-color: #ff4d4d; color: white; border: none; padding: 6px 10px;
+            border-radius: 4px; font-weight: 600; font-size: 0.85rem; cursor: pointer;
+        }
+
+        .back-footer { text-align: center; margin-bottom: 50px; }
+        .back-btn {
+            display: inline-block; padding: 12px 28px; background-color: #b71c1c;
+            color: white; text-decoration: none; border-radius: 5px; font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo-area">
+            <img src="Success Way Industrial Company Logo.jpeg" alt="Logo" class="logo-img">
+            <span>Success Way Industrial Company Limited</span>
+        </div>
+        <div class="nav-links">
+            <a href="login.html" onclick="sessionStorage.clear()">&larr; Logout / Back to Login</a>
+        </div>
+    </nav>
+
+    <div class="header-section">
+        <h1>Document Download Center</h1>
+        <p><span id="userRoleBadge" class="badge">Logged in as: Guest User</span></p>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel">
+        <h2>&#128272; Administrator Controls</h2>
+        <div class="admin-grid">
+            
+            <!-- Tool 1: User Management (Create & Delete) -->
+            <div class="admin-box">
+                <h3>Manage Users</h3>
+                <input type="text" id="newUsername" placeholder="New Username">
+                <input type="password" id="newPassword" placeholder="New Password">
+                <button class="admin-btn" onclick="createUser()">Create User</button>
+                
+                <h4 style="margin: 10px 0 5px 0; font-size: 0.85rem;">Existing Users:</h4>
+                <ul id="userList" class="user-list"></ul>
+            </div>
+
+            <!-- Tool 2: Change Admin Password -->
+            <div class="admin-box">
+                <h3>Change Admin Password</h3>
+                <input type="password" id="adminOldPass" placeholder="Current Admin Password">
+                <input type="password" id="adminNewPass" placeholder="New Password">
+                <button class="admin-btn" onclick="changeAdminPassword()">Update Admin Password</button>
+            </div>
+
+            <!-- Tool 3: Document Upload with Access Rights -->
+            <div class="admin-box">
+                <h3>Upload & Assign File</h3>
+                <input type="text" id="docTitle" placeholder="Document Title" required>
+                
+                <select id="docCategory">
+                    <option value="inspection">Inspection Report</option>
+                    <option value="audit">Audit Report</option>
+                    <option value="testing">Testing Report</option>
+                    <option value="others">Others</option>
+                </select>
+
+                <label style="font-size: 0.8rem; font-weight: bold;">Access Right:</label>
+                <select id="assignedUser">
+                    <option value="ALL">All Users (Public)</option>
+                </select>
+
+                <input type="file" id="docFile">
+                <button class="admin-btn" onclick="uploadDocument()">Upload File</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 4 Document Categories -->
+    <div class="sections-container">
+        
+        <div class="doc-card">
+            <h2>&#128196; Inspection Reports</h2>
+            <ul id="list-inspection" class="doc-list"></ul>
+        </div>
+
+        <div class="doc-card">
+            <h2>&#128203; Audit Reports</h2>
+            <ul id="list-audit" class="doc-list"></ul>
+        </div>
+
+        <div class="doc-card">
+            <h2>&#129514; Testing Reports</h2>
+            <ul id="list-testing" class="doc-list"></ul>
+        </div>
+
+        <div class="doc-card">
+            <h2>&#128193; Others</h2>
+            <ul id="list-others" class="doc-list"></ul>
+        </div>
+
+    </div>
+
+    <div class="back-footer">
+        <a href="login.html" class="back-btn" onclick="sessionStorage.clear()">Logout</a>
+    </div>
+
+    <script>
+        // Active Session Check
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser')) || { username: 'Guest', role: 'user' };
+        const isAdmin = currentUser.role === 'admin';
+
+        document.getElementById('userRoleBadge').innerText = `User: ${currentUser.username} (${isAdmin ? 'Admin Rights' : 'Standard Access'})`;
+
+        if (isAdmin) {
+            document.getElementById('adminPanel').style.display = 'block';
+            refreshAdminControls();
+        }
+
+        // Initialize Sample Documents
+        if (!localStorage.getItem('documents')) {
+            const defaultDocs = [
+                { id: 1, title: 'Pre-shipment Inspection Report #PSI-2026-001', category: 'inspection', assignedTo: 'ALL', date: '2026-07-15', url: '#' },
+                { id: 2, title: 'Factory Quality System Audit Report #AUD-HK-104', category: 'audit', assignedTo: 'ALL', date: '2026-05-10', url: '#' },
+                { id: 3, title: 'Electrical & Safety Test Certificate #TR-ELE-99', category: 'testing', assignedTo: 'ALL', date: '2026-07-01', url: '#' },
+                { id: 4, title: 'Company Product Specification Guidelines', category: 'others', assignedTo: 'ALL', date: '2026-01-10', url: '#' }
+            ];
+            localStorage.setItem('documents', JSON.stringify(defaultDocs));
+        }
+
+        function refreshAdminControls() {
+            populateUserDropdown();
+            renderUserList();
+        }
+
+        function populateUserDropdown() {
+            const users = JSON.parse(localStorage.getItem('users')) || {};
+            const dropdown = document.getElementById('assignedUser');
+            dropdown.innerHTML = '<option value="ALL">All Users (Public)</option>';
+            
+            Object.keys(users).forEach(uname => {
+                if (users[uname].role !== 'admin') {
+                    dropdown.innerHTML += `<option value="${uname}">${uname}</option>`;
+                }
+            });
+        }
+
+        function renderUserList() {
+            const users = JSON.parse(localStorage.getItem('users')) || {};
+            const userList = document.getElementById('userList');
+            userList.innerHTML = '';
+
+            Object.keys(users).forEach(uname => {
+                if (uname !== 'admin') {
+                    userList.innerHTML += `
+                        <li class="user-item">
+                            <span>${uname}</span>
+                            <button class="del-user-btn" onclick="deleteUser('${uname}')">Delete</button>
+                        </li>
+                    `;
+                }
+            });
+
+            if (userList.innerHTML === '') {
+                userList.innerHTML = '<li class="user-item"><span style="color:#888;">No standard users created yet.</span></li>';
+            }
+        }
+
+        function renderDocuments() {
+            const docs = JSON.parse(localStorage.getItem('documents')) || [];
+            const categories = ['inspection', 'audit', 'testing', 'others'];
+
+            categories.forEach(cat => {
+                const listElem = document.getElementById(`list-${cat}`);
+                listElem.innerHTML = '';
+                
+                const catDocs = docs.filter(d => {
+                    if (d.category !== cat) return false;
+                    if (isAdmin) return true;
+                    return d.assignedTo === 'ALL' || d.assignedTo === currentUser.username;
+                });
+
+                if (catDocs.length === 0) {
+                    listElem.innerHTML = '<li class="doc-item"><span class="doc-meta">No files available for your account.</span></li>';
+                } else {
+                    catDocs.forEach(d => {
+                        listElem.innerHTML += `
+                            <li class="doc-item">
+                                <div class="doc-info">
+                                    <span class="doc-title">${d.title}</span>
+                                    <span class="doc-meta">Date: ${d.date} ${isAdmin ? `&bull; Access: <span class="user-tag">${d.assignedTo}</span>` : ''}</span>
+                                </div>
+                                <div class="btn-group">
+                                    <a href="${d.url}" download class="download-btn">&#128190; Download</a>
+                                    ${isAdmin ? `<button class="delete-btn" onclick="deleteDoc(${d.id})">&#128465;</button>` : ''}
+                                </div>
+                            </li>
+                        `;
+                    });
+                }
+            });
+        }
+
+        // Action 1: Create New User Account
+        function createUser() {
+            const userIn = document.getElementById('newUsername').value.trim();
+            const passIn = document.getElementById('newPassword').value.trim();
+            if (!userIn || !passIn) return alert('Enter username and password!');
+
+            const users = JSON.parse(localStorage.getItem('users')) || {};
+            if (users[userIn]) return alert('Username already exists!');
+
+            users[userIn] = { password: passIn, role: 'user' };
+            localStorage.setItem('users', JSON.stringify(users));
+
+            alert(`User '${userIn}' created successfully!`);
+            document.getElementById('newUsername').value = '';
+            document.getElementById('newPassword').value = '';
+            refreshAdminControls();
+        }
+
+        // Action 2: Delete User Account
+        function deleteUser(username) {
+            if (confirm(`Are you sure you want to delete user '${username}'?`)) {
+                const users = JSON.parse(localStorage.getItem('users')) || {};
+                delete users[username];
+                localStorage.setItem('users', JSON.stringify(users));
+                refreshAdminControls();
+                alert(`User '${username}' deleted successfully.`);
+            }
+        }
+
+        // Action 3: Change Admin Password
+        function changeAdminPassword() {
+            const oldPass = document.getElementById('adminOldPass').value.trim();
+            const newPass = document.getElementById('adminNewPass').value.trim();
+
+            if (!oldPass || !newPass) return alert('Fill in both current and new passwords!');
+
+            const users = JSON.parse(localStorage.getItem('users')) || {};
+
+            if (users['admin'].password !== oldPass) {
+                return alert('Current Admin Password is incorrect!');
+            }
+
+            users['admin'].password = newPass;
+            localStorage.setItem('users', JSON.stringify(users));
+
+            alert('Administrator password updated successfully! Please use your new password next time you log in.');
+            document.getElementById('adminOldPass').value = '';
+            document.getElementById('adminNewPass').value = '';
+        }
+
+        // Action 4: Upload File & Set Access Privilege
+        function uploadDocument() {
+            const title = document.getElementById('docTitle').value.trim();
+            const category = document.getElementById('docCategory').value;
+            const assignedTo = document.getElementById('assignedUser').value;
+            const fileInput = document.getElementById('docFile');
+
+            if (!title) return alert('Enter a document title!');
+
+            const docs = JSON.parse(localStorage.getItem('documents')) || [];
+            const newDoc = {
+                id: Date.now(),
+                title: title,
+                category: category,
+                assignedTo: assignedTo,
+                date: new Date().toISOString().split('T')[0],
+                url: fileInput.files[0] ? URL.createObjectURL(fileInput.files[0]) : '#'
+            };
+
+            docs.push(newDoc);
+            localStorage.setItem('documents', JSON.stringify(docs));
+            renderDocuments();
+            alert(`Document uploaded and assigned to: ${assignedTo}`);
+            document.getElementById('docTitle').value = '';
+        }
+
+        // Action 5: Delete Document
+        function deleteDoc(id) {
+            if (confirm('Delete this file?')) {
+                let docs = JSON.parse(localStorage.getItem('documents')) || [];
+                docs = docs.filter(d => d.id !== id);
+                localStorage.setItem('documents', JSON.stringify(docs));
+                renderDocuments();
+            }
+        }
+
+        renderDocuments();
+    </script>
+
+</body>
+</html>

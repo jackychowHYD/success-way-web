@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Login | Success Way Industrial</title>
+    <style>
+        body, h1, p { margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        
+        body { 
+            background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
+                              url('Gemini_Generated_Image_395g6h395g6h395g.png');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            background-color: #f4f7f6; color: #333;
+        }
+
+        .navbar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 15px 5%; background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;
+        }
+        .logo-area { display: flex; align-items: center; font-weight: bold; }
+        .logo-img { height: 40px; margin-right: 15px; }
+        
+        .nav-links a { 
+            text-decoration: none; color: #333; font-weight: 600; 
+            background-color: #ffd700; padding: 8px 16px; border-radius: 4px; 
+            transition: background-color 0.3s; display: inline-block;
+        }
+        .nav-links a:hover { background-color: #e6c200; color: #000; }
+
+        .content-wrapper {
+            padding: 40px 5%; max-width: 450px; margin: 60px auto;
+            background: rgba(255, 255, 255, 0.95); border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 5px solid #b71c1c;
+        }
+        h1 { color: #b71c1c; margin-bottom: 25px; text-align: center; font-size: 2rem; }
+
+        label { font-weight: 600; display: block; margin-top: 15px; margin-bottom: 5px; }
+        input[type="text"], input[type="password"] { 
+            width: 100%; padding: 12px; margin-bottom: 15px; 
+            border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 1rem;
+        }
+
+        .login-btn { 
+            background: #b71c1c; color: white; padding: 12px 20px; border: none; 
+            border-radius: 4px; cursor: pointer; width: 100%; font-size: 1rem; font-weight: bold;
+            margin-top: 10px; transition: background-color 0.3s;
+        }
+        .login-btn:hover { background: #8e1515; }
+
+        .error-msg { color: #b71c1c; font-weight: bold; text-align: center; margin-top: 10px; display: none; }
+        .back-container { text-align: center; margin-top: 20px; }
+        .back-link { color: #b71c1c; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo-area">
+            <img src="Success Way Industrial Company Logo.jpeg" alt="Logo" class="logo-img">
+            <span>Success Way Industrial Company Limited</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">&larr; Return to Home</a>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <h1>Customer Login</h1>
+        
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required>
+
+            <button type="submit" class="login-btn">Log In</button>
+            <div id="errorMsg" class="error-msg">Invalid Username or Password!</div>
+        </form>
+
+        <div class="back-container">
+            <a href="index.html" class="back-link">Cancel and return to Home</a>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Default Admin if not set
+        if (!localStorage.getItem('users')) {
+            const defaultUsers = {
+                'admin': { password: 'admin123', role: 'admin' }
+            };
+            localStorage.setItem('users', JSON.stringify(defaultUsers));
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const userIn = document.getElementById('username').value.trim();
+            const passIn = document.getElementById('password').value.trim();
+            const users = JSON.parse(localStorage.getItem('users'));
+
+            if (users[userIn] && users[userIn].password === passIn) {
+                // Save session info
+                sessionStorage.setItem('currentUser', JSON.stringify({
+                    username: userIn,
+                    role: users[userIn].role
+                }));
+                window.location.href = 'document.html';
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
