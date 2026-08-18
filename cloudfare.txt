@@ -1,0 +1,114 @@
+      const html = [
+'<!DOCTYPE html>',
+'<html>',
+'<head>',
+'  <meta charset="UTF-8">',
+'  <title>File Upload & Download</title>',
+'  <style>',
+'    body { font-family: sans-serif; max-width: 700px; margin: 40px auto; }',
+'    h1 { color: #F38020; }',
+'    .upload-area, .file-list { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }',
+'    button { background: #F38020; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }',
+'    button:hover { background: #d96d15; }',
+'    ul { list-style: none; padding: 0; }',
+'    li { padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }',
+'    a { color: #F38020; text-decoration: none; }',
+'    .delete-btn { background: #e44; font-size: 12px; padding: 4px 10px; }',
+'  </style>',
+'</head>',
+'<body>',
+'  <h1>File Storage</h1>',
+'  <div class="upload-area">',
+'    <h2>Upload a File</h2>',
+'    <form method="POST" enctype="multipart/form-data">',
+'      <input type="file" name="file" required />',
+'      <button type="submit">Upload</button>',
+'    </form>',
+'  </div>',
+'  <div class="file-list">',
+'    <h2>Stored Files</h2>',
+'    <div id="files"></div>',
+'  </div>',
+'  <script>',
+"    function loadFiles() {",
+"      fetch('/api/files').then(r => r.json()).then(files => {",
+"        if (files.length === 0) {",
+"          document.getElementById('files').innerHTML = '<p>No files yet.</p>';",
+"          return;",
+"        }",
+"        document.getElementById('files').innerHTML = '<ul>' + files.map(f =>",
+"          '<li><span>' + f + '</span><span>' +",
+"          '<a href=\"/download/' + encodeURIComponent(f) + '\" download>Download</a> ' +",
+"          '<button class=\"delete-btn\" onclick=\"deleteFile(\\'' + f + '\\')\">Delete</button>' +",
+"          '</span></li>'",
+"        ).join('') + '</ul>';",
+"      });",
+"    }",
+"    function deleteFile(name) {",
+"      if (confirm('Delete ' + name + '?')) {",
+"        fetch('/delete/' + encodeURIComponent(name), { method: 'DELETE' }).then(() => loadFiles());",
+"      }",
+"    }",
+"    loadFiles();",
+'  <\/script>',
+'</body>',
+'</html>'
+].join('\n');
+
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
+  "Access-Control-Allow-Headers": "*",
+};
+
+export default {
+  async fetch(request, env) {
+    if (request.method === "OPTIONS") {
+      return new Response(null, { headers: corsHeaders });
+    }
+
+    const url = new URL(request.url);
+
+    if (request.method === "GET" && url.pathname === "/") {
+      return new Response(html, { headers: { "Content-Type": "text/html", ...corsHeaders } });
+    }
+
+    if (request.method === "GET" && url.pathname === "/api/files") {
+      const list = await env.MY_BUCKET.list();
+      const files = list.objects.map(obj => obj.key);
+      return Response.json(files, { headers: corsHeaders });
+    }
+
+    if (request.method === "POST" && url.pathname === "/") {
+      const formData = await request.formData();
+      const file = formData.get("file");
+      if (!file) {
+        return new Response("No file provided", { status: 400, headers: corsHeaders });
+      }
+      await env.MY_BUCKET.put(file.name, file.stream(), {
+        httpMetadata: { contentType: file.type },
+      });
+      return Response.json({ success: true, key: file.name }, { headers: corsHeaders });
+    }
+
+    if (request.method === "GET" && url.pathname.startsWith("/download/")) {
+      const key = decodeURIComponent(url.pathname.replace("/download/", ""));
+      const object = await env.MY_BUCKET.get(key);
+      if (!object) {
+        return new Response("File not found", { status: 404, headers: corsHeaders });
+      }
+      const headers = new Headers(corsHeaders);
+      object.writeHttpMetadata(headers);
+      headers.set("Content-Disposition", 'attachment; filename="' + key + '"');
+      return new Response(object.body, { headers });
+    }
+
+    if (request.method === "DELETE" && url.pathname.startsWith("/delete/")) {
+      const key = decodeURIComponent(url.pathname.replace("/delete/", ""));
+      await env.MY_BUCKET.delete(key);
+      return Response.json({ success: true }, { headers: corsHeaders });
+    }
+
+    return new Response("Not found", { status: 404, headers: corsHeaders });
+  },
+};

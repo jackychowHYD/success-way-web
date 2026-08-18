@@ -24,9 +24,10 @@
         
         .nav-links a { 
             text-decoration: none; color: #333; font-weight: 600; 
-            transition: color 0.3s ease; display: inline-block;
+            background-color: #ffd700; padding: 8px 16px; border-radius: 4px; 
+            transition: background-color 0.3s; display: inline-block;
         }
-        .nav-links a:hover { color: #b71c1c; }
+        .nav-links a:hover { background-color: #e6c200; color: #000; }
 
         .header-section { text-align: center; padding: 30px 5% 10px; }
         .header-section h1 { color: #b71c1c; font-size: 2.2rem; margin-bottom: 5px; }
@@ -99,10 +100,9 @@
         }
         .review-btn:hover { background-color: #01579b; }
         .download-btn {
-            background-color: #b71c1c; color: white; text-decoration: none; padding: 6px 12px;
-            border-radius: 4px; font-weight: 600; font-size: 0.85rem; transition: background-color 0.3s;
+            background-color: #ffd700; color: #333; text-decoration: none; padding: 6px 12px;
+            border-radius: 4px; font-weight: 600; font-size: 0.85rem;
         }
-        .download-btn:hover { background-color: #8e1515; }
         .delete-btn {
             background-color: #ff4d4d; color: white; border: none; padding: 6px 10px;
             border-radius: 4px; font-weight: 600; font-size: 0.85rem; cursor: pointer;
@@ -127,14 +127,6 @@
         .back-btn {
             display: inline-block; padding: 12px 28px; background-color: #b71c1c;
             color: white; text-decoration: none; border-radius: 5px; font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .back-btn:hover { background-color: #8e1515; }
-
-        @media (max-width: 768px) {
-            .navbar { flex-direction: column; text-align: center; gap: 10px; }
-            .logo-area { flex-direction: column; text-align: center; }
-            .logo-img { margin-right: 0; margin-bottom: 5px; }
         }
     </style>
 </head>
@@ -142,8 +134,7 @@
 
     <nav class="navbar">
         <div class="logo-area">
-            <img src="Success Way Industrial Company Logo.jpeg" alt="SW Logo" class="logo-img">
-            <img src="HYD Company LOGO.jpg" alt="HYD Logo" class="logo-img">
+            <img src="Success Way Industrial Company Logo.jpeg" alt="Logo" class="logo-img">
             <span>Success Way Industrial Company Limited</span>
         </div>
         <div class="nav-links">
@@ -248,6 +239,7 @@
     </div>
 
     <script>
+        // Replace with your published workers.dev URL
         const CLOUDFLARE_WORKER_URL = "https://success-way.jackychowhk2011.workers.dev";
 
         const currentUser = JSON.parse(sessionStorage.getItem('currentUser')) || { username: 'Guest', role: 'user' };
@@ -342,7 +334,6 @@
                     listElem.innerHTML = '<li class="doc-item"><span class="doc-meta">No files available for your account.</span></li>';
                 } else {
                     catDocs.forEach(d => {
-                        const downloadUrl = CLOUDFLARE_WORKER_URL + "/download/" + encodeURIComponent(d.r2Key);
                         listElem.innerHTML += `
                             <li class="doc-item">
                                 <div class="doc-info">
@@ -350,9 +341,9 @@
                                     <span class="doc-meta">Date: ${d.date} ${isAdmin ? `&bull; Access: <span class="user-tag">${d.assignedTo}</span>` : ''}</span>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="review-btn" onclick="reviewDoc('${d.title}', '${downloadUrl}')">Review</button>
-                                    <a href="${downloadUrl}" download target="_blank" class="download-btn" onclick="trackDownload('${d.title}')">Download</a>
-                                    ${isAdmin ? `<button class="delete-btn" onclick="deleteDoc(${d.id}, '${d.r2Key}')">Delete</button>` : ''}
+                                    <button class="review-btn" onclick="reviewDoc('${d.title}', '${d.url}')">👁 Review</button>
+                                    <a href="${d.url}" download target="_blank" class="download-btn" onclick="trackDownload('${d.title}')">💾 Download</a>
+                                    ${isAdmin ? `<button class="delete-btn" onclick="deleteDoc(${d.id})">🗑</button>` : ''}
                                 </div>
                             </li>
                         `;
@@ -384,6 +375,15 @@
             localStorage.setItem('userDownloadLogs', JSON.stringify(logs));
         }
 
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result.split(',')[1]);
+                reader.onerror = error => reject(error);
+            });
+        }
+
         async function uploadDocument() {
             const title = document.getElementById('docTitle').value.trim();
             const category = document.getElementById('docCategory').value;
@@ -394,19 +394,23 @@
             if (!title || !file) return alert('Please enter a document title and select a file!');
 
             const uploadBtn = document.getElementById('uploadBtn');
-            uploadBtn.innerText = 'Uploading to Cloudflare R2...';
+            uploadBtn.innerText = 'Uploading to KV...';
             uploadBtn.disabled = true;
 
             try {
-                const r2Key = file.name;
-                const renamedFile = new File([file], r2Key, { type: file.type });
+                const base64String = await fileToBase64(file);
+                const fileName = `${Date.now()}_${file.name}`;
+                const fileCloudflareUrl = `${CLOUDFLARE_WORKER_URL}/${fileName}`;
 
-                const formData = new FormData();
-                formData.append('file', renamedFile);
+                const payload = {
+                    base64: base64String,
+                    type: file.type
+                };
 
-                const response = await fetch(CLOUDFLARE_WORKER_URL + "/", {
-                    method: 'POST',
-                    body: formData
+                const response = await fetch(fileCloudflareUrl, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
                 });
 
                 if (response.ok) {
@@ -417,20 +421,20 @@
                         category: category,
                         assignedTo: assignedTo,
                         date: new Date().toISOString().split('T')[0],
-                        r2Key: r2Key
+                        url: fileCloudflareUrl
                     });
 
                     localStorage.setItem('documents', JSON.stringify(docs));
                     renderDocuments();
-                    alert(`File successfully uploaded to Cloudflare R2 and assigned to: ${assignedTo}`);
+                    alert(`File successfully uploaded to Cloudflare KV and assigned to: ${assignedTo}`);
                     document.getElementById('docTitle').value = '';
                     fileInput.value = '';
                 } else {
-                    alert('Upload failed. Please check your Cloudflare Worker.');
+                    alert('Upload failed. Please check your Cloudflare Worker URL setting.');
                 }
             } catch (err) {
                 console.error(err);
-                alert('Upload error: Unable to connect to Cloudflare Worker.');
+                alert('Upload error: Unable to connect to Cloudflare KV.');
             } finally {
                 uploadBtn.innerText = 'Upload File';
                 uploadBtn.disabled = false;
@@ -484,12 +488,8 @@
             document.getElementById('adminNewPass').value = '';
         }
 
-        function deleteDoc(id, r2Key) {
+        function deleteDoc(id) {
             if (confirm('Delete this file?')) {
-                fetch(CLOUDFLARE_WORKER_URL + "/delete/" + encodeURIComponent(r2Key), {
-                    method: 'DELETE'
-                }).catch(err => console.error('R2 delete error:', err));
-
                 let docs = JSON.parse(localStorage.getItem('documents')) || [];
                 docs = docs.filter(d => d.id !== id);
                 localStorage.setItem('documents', JSON.stringify(docs));

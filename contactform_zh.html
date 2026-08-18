@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form | Success Way Industrial</title>
+    <title>發送訊息 | 龍昇實業有限公司</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; }
+        body { font-family: 'Segoe UI', Arial, 'Microsoft JhengHei', sans-serif; margin: 0; }
         
         .navbar {
             display: flex; align-items: center; justify-content: space-between;
@@ -25,6 +25,17 @@
         }
         .nav-links a:hover { 
             color: #b71c1c; 
+        }
+
+        .lang-btn {
+            border: 1px solid #b71c1c;
+            padding: 4px 10px;
+            border-radius: 4px;
+            color: #b71c1c !important;
+        }
+        .lang-btn:hover {
+            background-color: #b71c1c;
+            color: white !important;
         }
 
         .main-content { position: relative; padding: 60px 5%; min-height: 70vh; }
@@ -56,29 +67,30 @@
         <div class="logo-area">
             <img src="Success Way Industrial Company Logo.jpeg" alt="SW Logo" class="logo-img">
             <img src="HYD Company LOGO.jpg" alt="HYD Logo" class="logo-img">
-            <span>Success Way Industrial Company Limited</span>
+            <span>龍昇實業有限公司</span>
         </div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="services.html">Services</a>
-            <a href="products.html">Selling Products</a>
-            <a href="contactinfo.html">Contact</a>
-            <a href="login.html">Customer Login</a>
+            <a href="index_zh.html">首頁</a>
+            <a href="about_zh.html">關於我們</a>
+            <a href="services_zh.html">服務項目</a>
+            <a href="products_zh.html">銷售產品</a>
+            <a href="contactinfo_zh.html">聯絡我們</a>
+            <a href="login_zh.html">客戶登錄</a>
+            <a href="contactform.html" class="lang-btn">English</a>
         </div>
     </nav>
 
     <section class="main-content">
         <div class="content-wrapper">
-            <h2>Send Us a Message</h2>
+            <h2>發送訊息給我們</h2>
             <form action="https://formspree.io/f/mwvgnkek" method="POST">
-                <label>Your Email Address:</label>
+                <label>您的電郵地址：</label>
                 <input type="email" name="email" required>
-                <label>Headline (Subject):</label>
+                <label>主題：</label>
                 <input type="text" name="subject" required>
-                <label>Message Details:</label>
+                <label>訊息內容：</label>
                 <textarea name="message" rows="6" required></textarea>
-                <button type="submit">Send Message</button>
+                <button type="submit">發送訊息</button>
             </form>
         </div>
     </section>

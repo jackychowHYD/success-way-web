@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Login | Success Way Industrial</title>
+    <title>客戶登錄 | 龍昇實業有限公司</title>
     <style>
         body, h1, p { 
             margin: 0; 
             padding: 0; 
-            font-family: 'Segoe UI', Arial, sans-serif; 
+            font-family: 'Segoe UI', Arial, 'Microsoft JhengHei', sans-serif; 
         }
         
         body { 
@@ -51,6 +51,18 @@
         }
         .nav-links a:hover { 
             color: #b71c1c; 
+        }
+
+        .lang-btn {
+            border: 1px solid #b71c1c;
+            padding: 4px 10px;
+            border-radius: 4px;
+            color: #b71c1c !important;
+            margin-left: 15px;
+        }
+        .lang-btn:hover {
+            background-color: #b71c1c;
+            color: white !important;
         }
 
         .content-wrapper {
@@ -140,29 +152,30 @@
         <div class="logo-area">
             <img src="Success Way Industrial Company Logo.jpeg" alt="SW Logo" class="logo-img">
             <img src="HYD Company LOGO.jpg" alt="HYD Logo" class="logo-img">
-            <span>Success Way Industrial Company Limited</span>
+            <span>龍昇實業有限公司</span>
         </div>
         <div class="nav-links">
-            <a href="index.html">&larr; Return to Home</a>
+            <a href="index_zh.html">&larr; 返回首頁</a>
+            <a href="login.html" class="lang-btn">English</a>
         </div>
     </nav>
 
     <div class="content-wrapper">
-        <h1>Customer Login</h1>
+        <h1>客戶登錄系統</h1>
         
         <form id="loginForm" onsubmit="handleLogin(event)">
-            <label for="username">Username</label>
-            <input type="text" id="username" placeholder="Enter your username" required>
+            <label for="username">用戶名</label>
+            <input type="text" id="username" placeholder="請輸入用戶名" required>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Enter your password" required>
+            <label for="password">密碼</label>
+            <input type="password" id="password" placeholder="請輸入密碼" required>
 
-            <button type="submit" class="login-btn">Log In</button>
-            <div id="errorMsg" class="error-msg">Invalid Username or Password!</div>
+            <button type="submit" class="login-btn">登 錄</button>
+            <div id="errorMsg" class="error-msg">用戶名或密碼無效！</div>
         </form>
 
         <div class="back-container">
-            <a href="index.html" class="back-link">Cancel and return to Home</a>
+            <a href="index_zh.html" class="back-link">取消並返回首頁</a>
         </div>
     </div>
 
@@ -192,7 +205,7 @@
                     username: userIn,
                     role: users[userIn].role
                 }));
-                window.location.href = 'document.html';
+                window.location.href = 'document_zh.html';
             } else {
                 document.getElementById('errorMsg').style.display = 'block';
             }

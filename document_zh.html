@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Center | Success Way Industrial</title>
+    <title>文檔下載中心 | 龍昇實業有限公司</title>
     <style>
-        body, h1, h2, h3, p { margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body, h1, h2, h3, p { margin: 0; padding: 0; font-family: 'Segoe UI', Arial, 'Microsoft JhengHei', sans-serif; }
         
         body { 
             background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
@@ -28,11 +28,23 @@
         }
         .nav-links a:hover { color: #b71c1c; }
 
+        .lang-btn {
+            border: 1px solid #b71c1c;
+            padding: 4px 10px;
+            border-radius: 4px;
+            color: #b71c1c !important;
+            margin-left: 15px;
+        }
+        .lang-btn:hover {
+            background-color: #b71c1c;
+            color: white !important;
+        }
+
         .header-section { text-align: center; padding: 30px 5% 10px; }
         .header-section h1 { color: #b71c1c; font-size: 2.2rem; margin-bottom: 5px; }
         .badge { display: inline-block; padding: 4px 12px; background: #e0e0e0; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
         
-        /* Activity Log Dashboard */
+        /* 日誌面板 */
         .logs-panel {
             background: #fff; border: 1px solid #ddd; border-radius: 8px;
             max-width: 950px; margin: 20px auto; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -49,7 +61,7 @@
         .log-user { font-weight: bold; color: #b71c1c; }
         .log-time { color: #777; font-size: 0.78rem; }
 
-        /* Admin Controls Styling */
+        /* 管理員控制面板 */
         .admin-panel {
             background: #fff; border: 2px dashed #b71c1c; border-radius: 8px;
             max-width: 950px; margin: 20px auto; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -64,13 +76,11 @@
         .admin-btn { background: #b71c1c; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; }
         .admin-btn:hover { background: #8e1515; }
 
-        /* User List in Admin Panel */
         .user-list { list-style: none; padding: 0; margin: 10px 0 0 0; max-height: 120px; overflow-y: auto; border: 1px solid #ddd; border-radius: 4px; background: #fff; }
         .user-item { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; border-bottom: 1px solid #eee; font-size: 0.85rem; }
         .user-item:last-child { border-bottom: none; }
         .del-user-btn { background: #ff4d4d; color: white; border: none; border-radius: 3px; padding: 2px 6px; cursor: pointer; font-size: 0.75rem; }
 
-        /* Sections Grid Layout */
         .sections-container {
             max-width: 1000px; margin: 30px auto 40px; padding: 0 5%;
             display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 25px;
@@ -108,7 +118,6 @@
             border-radius: 4px; font-weight: 600; font-size: 0.85rem; cursor: pointer;
         }
 
-        /* Document Preview Modal */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;
@@ -144,116 +153,117 @@
         <div class="logo-area">
             <img src="Success Way Industrial Company Logo.jpeg" alt="SW Logo" class="logo-img">
             <img src="HYD Company LOGO.jpg" alt="HYD Logo" class="logo-img">
-            <span>Success Way Industrial Company Limited</span>
+            <span>龍昇實業有限公司</span>
         </div>
         <div class="nav-links">
-            <a href="login.html" onclick="sessionStorage.clear()">&larr; Logout / Back to Login</a>
+            <a href="login_zh.html" onclick="sessionStorage.clear()">&larr; 登出 / 返回登錄頁</a>
+            <a href="document.html" class="lang-btn">English</a>
         </div>
     </nav>
 
     <div class="header-section">
-        <h1>Document Download Center</h1>
-        <p><span id="userRoleBadge" class="badge">Logged in as: Guest User</span></p>
+        <h1>文檔下載中心</h1>
+        <p><span id="userRoleBadge" class="badge">已登錄為：訪客用戶</span></p>
     </div>
 
-    <!-- Admin Activity Tracking Logs -->
+    <!-- 管理員活動追蹤日誌 -->
     <div id="logsPanel" class="logs-panel">
-        <h2>&#128202; User Activity Tracking Logs</h2>
+        <h2>&#128202; 用戶活動追蹤日誌</h2>
         <div class="logs-grid">
             <div class="log-box">
-                <h3>User Login History</h3>
+                <h3>用戶登錄記錄</h3>
                 <ul id="loginLogs" class="log-list"></ul>
             </div>
             <div class="log-box">
-                <h3>Document Download History</h3>
+                <h3>文檔下載記錄</h3>
                 <ul id="downloadLogs" class="log-list"></ul>
             </div>
         </div>
     </div>
 
-    <!-- Admin Panel -->
+    <!-- 管理員控制面板 -->
     <div id="adminPanel" class="admin-panel">
-        <h2>&#128272; Administrator Controls</h2>
+        <h2>&#128272; 系統管理員控制台</h2>
         <div class="admin-grid">
             
             <div class="admin-box">
-                <h3>Manage Users</h3>
-                <input type="text" id="newUsername" placeholder="New Username">
-                <input type="password" id="newPassword" placeholder="New Password">
-                <button class="admin-btn" onclick="createUser()">Create User</button>
-                <h4 style="margin: 10px 0 5px 0; font-size: 0.85rem;">Existing Users:</h4>
+                <h3>用戶管理</h3>
+                <input type="text" id="newUsername" placeholder="新用戶名">
+                <input type="password" id="newPassword" placeholder="新密碼">
+                <button class="admin-btn" onclick="createUser()">創建用戶</button>
+                <h4 style="margin: 10px 0 5px 0; font-size: 0.85rem;">現有用戶列表：</h4>
                 <ul id="userList" class="user-list"></ul>
             </div>
 
             <div class="admin-box">
-                <h3>Change Admin Password</h3>
-                <input type="password" id="adminOldPass" placeholder="Current Admin Password">
-                <input type="password" id="adminNewPass" placeholder="New Password">
-                <button class="admin-btn" onclick="changeAdminPassword()">Update Admin Password</button>
+                <h3>修改管理員密碼</h3>
+                <input type="password" id="adminOldPass" placeholder="當前管理員密碼">
+                <input type="password" id="adminNewPass" placeholder="新密碼">
+                <button class="admin-btn" onclick="changeAdminPassword()">更新管理員密碼</button>
             </div>
 
             <div class="admin-box">
-                <h3>Upload to Success Way Database</h3>
-                <input type="text" id="docTitle" placeholder="Document Title" required>
+                <h3>上傳至龍昇資料庫</h3>
+                <input type="text" id="docTitle" placeholder="文檔標題" required>
                 <select id="docCategory">
-                    <option value="inspection">Inspection Report</option>
-                    <option value="audit">Audit Report</option>
-                    <option value="testing">Testing Report</option>
-                    <option value="others">Others</option>
+                    <option value="inspection">出貨檢驗報告</option>
+                    <option value="audit">工廠審核報告</option>
+                    <option value="testing">實驗室測試報告</option>
+                    <option value="others">其他文檔</option>
                 </select>
-                <label style="font-size: 0.8rem; font-weight: bold;">Access Right:</label>
+                <label style="font-size: 0.8rem; font-weight: bold;">權限設置：</label>
                 <select id="assignedUser">
-                    <option value="ALL">All Users (Public)</option>
+                    <option value="ALL">所有用戶 (公開)</option>
                 </select>
                 <input type="file" id="docFile" required>
-                <button class="admin-btn" id="uploadBtn" onclick="uploadDocument()">Upload File</button>
+                <button class="admin-btn" id="uploadBtn" onclick="uploadDocument()">上傳檔案</button>
             </div>
 
         </div>
     </div>
 
-    <!-- Document Categories Grid -->
+    <!-- 文檔分類網格 -->
     <div class="sections-container">
         <div class="doc-card">
-            <h2>&#128196; Inspection Reports</h2>
+            <h2>&#128196; 檢驗報告</h2>
             <ul id="list-inspection" class="doc-list"></ul>
         </div>
         <div class="doc-card">
-            <h2>&#128203; Audit Reports</h2>
+            <h2>&#128203; 審核報告</h2>
             <ul id="list-audit" class="doc-list"></ul>
         </div>
         <div class="doc-card">
-            <h2>&#129514; Testing Reports</h2>
+            <h2>&#129514; 測試報告</h2>
             <ul id="list-testing" class="doc-list"></ul>
         </div>
         <div class="doc-card">
-            <h2>&#128193; Others</h2>
+            <h2>&#128193; 其他文檔</h2>
             <ul id="list-others" class="doc-list"></ul>
         </div>
     </div>
 
-    <!-- File Review Modal Window -->
+    <!-- 文檔預覽彈窗 -->
     <div id="reviewModal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <span id="modalDocTitle" class="modal-title">Document Review</span>
-                <button class="close-modal" onclick="closeModal()">Close Preview &times;</button>
+                <span id="modalDocTitle" class="modal-title">文檔預覽</span>
+                <button class="close-modal" onclick="closeModal()">關閉預覽 &times;</button>
             </div>
             <div id="modalBody" class="modal-body"></div>
         </div>
     </div>
 
     <div class="back-footer">
-        <a href="login.html" class="back-btn" onclick="sessionStorage.clear()">Logout</a>
+        <a href="login_zh.html" class="back-btn" onclick="sessionStorage.clear()">安全登出</a>
     </div>
 
     <script>
         const CLOUDFLARE_WORKER_URL = "https://success-way.jackychowhk2011.workers.dev";
 
-        const currentUser = JSON.parse(sessionStorage.getItem('currentUser')) || { username: 'Guest', role: 'user' };
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser')) || { username: '訪客', role: 'user' };
         const isAdmin = currentUser.role === 'admin';
 
-        document.getElementById('userRoleBadge').innerText = `User: ${currentUser.username} (${isAdmin ? 'Admin Rights' : 'Standard Access'})`;
+        document.getElementById('userRoleBadge').innerText = `已登錄用戶: ${currentUser.username} (${isAdmin ? '管理員權限' : '標準權限'})`;
 
         if (isAdmin) {
             document.getElementById('adminPanel').style.display = 'block';
@@ -270,7 +280,7 @@
         function populateUserDropdown() {
             const users = JSON.parse(localStorage.getItem('users')) || {};
             const dropdown = document.getElementById('assignedUser');
-            dropdown.innerHTML = '<option value="ALL">All Users (Public)</option>';
+            dropdown.innerHTML = '<option value="ALL">所有用戶 (公開)</option>';
             
             Object.keys(users).forEach(uname => {
                 if (users[uname].role !== 'admin') {
@@ -289,14 +299,14 @@
                     userList.innerHTML += `
                         <li class="user-item">
                             <span>${uname}</span>
-                            <button class="del-user-btn" onclick="deleteUser('${uname}')">Delete</button>
+                            <button class="del-user-btn" onclick="deleteUser('${uname}')">刪除</button>
                         </li>
                     `;
                 }
             });
 
             if (userList.innerHTML === '') {
-                userList.innerHTML = '<li class="user-item"><span style="color:#888;">No standard users created yet.</span></li>';
+                userList.innerHTML = '<li class="user-item"><span style="color:#888;">尚未創建標準用戶。</span></li>';
             }
         }
 
@@ -305,10 +315,10 @@
             const loginElem = document.getElementById('loginLogs');
             loginElem.innerHTML = '';
             if (loginLogs.length === 0) {
-                loginElem.innerHTML = '<li class="log-item"><span>No login history available.</span></li>';
+                loginElem.innerHTML = '<li class="log-item"><span>無登錄記錄。</span></li>';
             } else {
                 loginLogs.slice().reverse().forEach(log => {
-                    loginElem.innerHTML += `<li class="log-item"><div>User: <span class="log-user">${log.username}</span></div><div class="log-time">${log.time}</div></li>`;
+                    loginElem.innerHTML += `<li class="log-item"><div>用戶: <span class="log-user">${log.username}</span></div><div class="log-time">${log.time}</div></li>`;
                 });
             }
 
@@ -316,10 +326,10 @@
             const downloadElem = document.getElementById('downloadLogs');
             downloadElem.innerHTML = '';
             if (downloadLogs.length === 0) {
-                downloadElem.innerHTML = '<li class="log-item"><span>No download history available.</span></li>';
+                downloadElem.innerHTML = '<li class="log-item"><span>無下載記錄。</span></li>';
             } else {
                 downloadLogs.slice().reverse().forEach(log => {
-                    downloadElem.innerHTML += `<li class="log-item"><div><span class="log-user">${log.username}</span> downloaded <strong>"${log.docTitle}"</strong></div><div class="log-time">${log.time}</div></li>`;
+                    downloadElem.innerHTML += `<li class="log-item"><div><span class="log-user">${log.username}</span> 下載了 <strong>"${log.docTitle}"</strong></div><div class="log-time">${log.time}</div></li>`;
                 });
             }
         }
@@ -339,7 +349,7 @@
                 });
 
                 if (catDocs.length === 0) {
-                    listElem.innerHTML = '<li class="doc-item"><span class="doc-meta">No files available for your account.</span></li>';
+                    listElem.innerHTML = '<li class="doc-item"><span class="doc-meta">暫無可用檔案。</span></li>';
                 } else {
                     catDocs.forEach(d => {
                         const downloadUrl = CLOUDFLARE_WORKER_URL + "/download/" + encodeURIComponent(d.r2Key);
@@ -347,12 +357,12 @@
                             <li class="doc-item">
                                 <div class="doc-info">
                                     <span class="doc-title">${d.title}</span>
-                                    <span class="doc-meta">Date: ${d.date} ${isAdmin ? `&bull; Access: <span class="user-tag">${d.assignedTo}</span>` : ''}</span>
+                                    <span class="doc-meta">日期: ${d.date} ${isAdmin ? `&bull; 權限: <span class="user-tag">${d.assignedTo}</span>` : ''}</span>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="review-btn" onclick="reviewDoc('${d.title}', '${downloadUrl}')">Review</button>
-                                    <a href="${downloadUrl}" download target="_blank" class="download-btn" onclick="trackDownload('${d.title}')">Download</a>
-                                    ${isAdmin ? `<button class="delete-btn" onclick="deleteDoc(${d.id}, '${d.r2Key}')">Delete</button>` : ''}
+                                    <button class="review-btn" onclick="reviewDoc('${d.title}', '${downloadUrl}')">預覽</button>
+                                    <a href="${downloadUrl}" download target="_blank" class="download-btn" onclick="trackDownload('${d.title}')">下載</a>
+                                    ${isAdmin ? `<button class="delete-btn" onclick="deleteDoc(${d.id}, '${d.r2Key}')">刪除</button>` : ''}
                                 </div>
                             </li>
                         `;
@@ -368,7 +378,7 @@
             if (url && url !== '#') {
                 modalBody.innerHTML = `<iframe src="${url}"></iframe>`;
             } else {
-                modalBody.innerHTML = `<p style="padding:20px; color:#666; font-weight:bold;">No preview file attached.</p>`;
+                modalBody.innerHTML = `<p style="padding:20px; color:#666; font-weight:bold;">未附加預覽檔案。</p>`;
             }
             document.getElementById('reviewModal').style.display = 'flex';
         }
@@ -391,10 +401,10 @@
             const fileInput = document.getElementById('docFile');
             const file = fileInput.files[0];
 
-            if (!title || !file) return alert('Please enter a document title and select a file!');
+            if (!title || !file) return alert('請輸入文檔標題並選擇檔案！');
 
             const uploadBtn = document.getElementById('uploadBtn');
-            uploadBtn.innerText = 'Uploading to Cloudflare R2...';
+            uploadBtn.innerText = '正在上傳至 Cloudflare R2...';
             uploadBtn.disabled = true;
 
             try {
@@ -422,17 +432,17 @@
 
                     localStorage.setItem('documents', JSON.stringify(docs));
                     renderDocuments();
-                    alert(`File successfully uploaded to Cloudflare R2 and assigned to: ${assignedTo}`);
+                    alert(`檔案成功上傳至 Cloudflare R2 並分配給：${assignedTo}`);
                     document.getElementById('docTitle').value = '';
                     fileInput.value = '';
                 } else {
-                    alert('Upload failed. Please check your Cloudflare Worker.');
+                    alert('上傳失敗，請檢查 Cloudflare Worker 設置。');
                 }
             } catch (err) {
                 console.error(err);
-                alert('Upload error: Unable to connect to Cloudflare Worker.');
+                alert('上傳錯誤：無法連接至 Cloudflare Worker。');
             } finally {
-                uploadBtn.innerText = 'Upload File';
+                uploadBtn.innerText = '上傳檔案';
                 uploadBtn.disabled = false;
             }
         }
@@ -440,27 +450,27 @@
         function createUser() {
             const userIn = document.getElementById('newUsername').value.trim();
             const passIn = document.getElementById('newPassword').value.trim();
-            if (!userIn || !passIn) return alert('Enter username and password!');
+            if (!userIn || !passIn) return alert('請輸入用戶名和密碼！');
 
             const users = JSON.parse(localStorage.getItem('users')) || {};
-            if (users[userIn]) return alert('Username already exists!');
+            if (users[userIn]) return alert('該用戶名已存在！');
 
             users[userIn] = { password: passIn, role: 'user' };
             localStorage.setItem('users', JSON.stringify(users));
 
-            alert(`User '${userIn}' created successfully!`);
+            alert(`用戶 '${userIn}' 創建成功！`);
             document.getElementById('newUsername').value = '';
             document.getElementById('newPassword').value = '';
             refreshAdminControls();
         }
 
         function deleteUser(username) {
-            if (confirm(`Are you sure you want to delete user '${username}'?`)) {
+            if (confirm(`確定要刪除用戶 '${username}' 嗎？`)) {
                 const users = JSON.parse(localStorage.getItem('users')) || {};
                 delete users[username];
                 localStorage.setItem('users', JSON.stringify(users));
                 refreshAdminControls();
-                alert(`User '${username}' deleted successfully.`);
+                alert(`用戶 '${username}' 已成功刪除。`);
             }
         }
 
@@ -468,24 +478,24 @@
             const oldPass = document.getElementById('adminOldPass').value.trim();
             const newPass = document.getElementById('adminNewPass').value.trim();
 
-            if (!oldPass || !newPass) return alert('Fill in both current and new passwords!');
+            if (!oldPass || !newPass) return alert('請填寫當前密碼和新密碼！');
 
             const users = JSON.parse(localStorage.getItem('users')) || {};
 
             if (users['admin'].password !== oldPass) {
-                return alert('Current Admin Password is incorrect!');
+                return alert('當前管理員密碼不正確！');
             }
 
             users['admin'].password = newPass;
             localStorage.setItem('users', JSON.stringify(users));
 
-            alert('Administrator password updated successfully!');
+            alert('管理員密碼已成功更新！');
             document.getElementById('adminOldPass').value = '';
             document.getElementById('adminNewPass').value = '';
         }
 
         function deleteDoc(id, r2Key) {
-            if (confirm('Delete this file?')) {
+            if (confirm('確定要刪除此檔案嗎？')) {
                 fetch(CLOUDFLARE_WORKER_URL + "/delete/" + encodeURIComponent(r2Key), {
                     method: 'DELETE'
                 }).catch(err => console.error('R2 delete error:', err));
