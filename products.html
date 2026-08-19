@@ -29,42 +29,23 @@
             opacity: 0.15; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
         }
 
-        /* Updated Header Section to align Title and Blue Button */
         .header-section { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 40px 5% 20px; 
-            position: relative; 
-            z-index: 5; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 40px 5% 20px; position: relative; z-index: 5; 
         }
         h1 { color: #b71c1c; margin: 0; }
 
-        /* Blue Header Button */
         .btn-blue {
-            background-color: #1976d2;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: background-color 0.3s ease;
+            background-color: #1976d2; color: #ffffff; border: none;
+            padding: 10px 20px; font-size: 0.95rem; font-weight: 600;
+            border-radius: 4px; cursor: pointer; text-decoration: none;
+            display: inline-block; transition: background-color 0.3s ease;
         }
-        .btn-blue:hover {
-            background-color: #0d47a1;
-        }
+        .btn-blue:hover { background-color: #0d47a1; }
         
         .product-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 25px; 
-            padding: 20px 5%; 
-            position: relative; 
-            z-index: 5; 
+            display: grid; grid-template-columns: repeat(3, 1fr); 
+            gap: 25px; padding: 20px 5%; position: relative; z-index: 5; 
         }
 
         .product-card { 
@@ -84,16 +65,10 @@
         .btn-group { display: flex; gap: 8px; justify-content: center; margin-top: 10px; }
 
         .btn {
-            border: none;
-            padding: 9px 14px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-            color: #ffffff;
+            border: none; padding: 9px 14px; font-size: 0.85rem;
+            font-weight: 600; border-radius: 4px; cursor: pointer;
+            text-decoration: none; display: inline-block;
+            transition: background-color 0.3s ease; color: #ffffff;
         }
 
         .btn-red { background-color: #b71c1c; }
@@ -101,6 +76,40 @@
 
         .btn-green { background-color: #2e7d32; }
         .btn-green:hover { background-color: #1b5e20; }
+
+        /* Centered Pop-up Modal Styling */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-box {
+            background: #ffffff;
+            padding: 25px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 420px;
+            width: 85%;
+        }
+
+        .modal-box p {
+            margin: 0 0 20px 0;
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
 
         @media (max-width: 992px) {
             .product-grid { grid-template-columns: repeat(2, 1fr); }
@@ -142,106 +151,67 @@
             <button class="btn-blue">Industrial Switches</button>
         </div>
 
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="140DDI84100.jpg" alt="140DDI84100">
-                <div class="product-details">
-                    <p><strong>Part Number:</strong> 140DDI84100</p>
-                    <p><strong>Product Description:</strong> Discrete Input Module</p>
-                    <p><strong>Packing Status:</strong> New - Box with Seal</p>
-                    <p><strong>C.O.O.:</strong> China</p>
-                </div>
-                <div class="btn-group">
-                    <button class="btn btn-red">Stock Sale</button>
-                    <a href="contactform.html" class="btn btn-green">Ask for Quote</a>
-                </div>
-            </div>
+        <div class="product-grid" id="productContainer"></div>
+    </section>
 
-            <div class="product-card">
-                <img src="BMXCPS3500H.jpg" alt="BMXCPS3500H">
-                <div class="product-details">
-                    <p><strong>Part Number:</strong> BMXCPS3500H</p>
-                    <p><strong>Product Description:</strong> Power Supply Module</p>
-                    <p><strong>Packing Status:</strong> New in Box</p>
-                    <p><strong>C.O.O.:</strong> Indonesia</p>
-                </div>
-                <div class="btn-group">
-                    <button class="btn btn-red">Stock Sale</button>
-                    <a href="contactform.html" class="btn btn-green">Ask for Quote</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="140CRP93200.jpg" alt="140CRP93200">
-                <div class="product-details">
-                    <p><strong>Part Number:</strong> 140CRP93200</p>
-                    <p><strong>Product Description:</strong> RIO Head-end Adaptor Module</p>
-                    <p><strong>Packing Status:</strong> New - Box with Seal</p>
-                    <p><strong>C.O.O.:</strong> France</p>
-                </div>
-                <div class="btn-group">
-                    <button class="btn btn-red">Stock Sale</button>
-                    <a href="contactform.html" class="btn btn-green">Ask for Quote</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="140AMM09000.jpg" alt="140AMM09000">
-                <div class="product-details">
-                    <p><strong>Part Number:</strong> 140AMM09000</p>
-                    <p><strong>Product Description:</strong> Analog Input Output Module</p>
-                    <p><strong>Packing Status:</strong> New - Box with Seal</p>
-                    <p><strong>C.O.O.:</strong> France</p>
-                </div>
-                <div class="btn-group">
-                    <button class="btn btn-red">Stock Sale</button>
-                    <a href="contactform.html" class="btn btn-green">Ask for Quote</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="BMXP342020.jpg" alt="BMXP342020">
-                <div class="product-details">
-                    <p><strong>Part Number:</strong> BMXP342020</p>
-                    <p><strong>Product Description:</strong> Processor Module</p>
-                    <p><strong>Packing Status:</strong> New in Box</p>
-                    <p><strong>C.O.O.:</strong> France</p>
-                </div>
-                <div class="btn-group">
-                    <button class="btn btn-red">Stock Sale</button>
-                    <a href="contactform.html" class="btn btn-green">Ask for Quote</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="140ACI03000.jpg" alt="140ACI03000">
-                <div class="product-details">
-                    <p><strong>Part Number:</strong> 140ACI03000</p>
-                    <p><strong>Product Description:</strong> Analog Input Module</p>
-                    <p><strong>Packing Status:</strong> New - Box with Seal</p>
-                    <p><strong>C.O.O.:</strong> France</p>
-                </div>
-                <div class="btn-group">
-                    <button class="btn btn-red">Stock Sale</button>
-                    <a href="contactform.html" class="btn btn-green">Ask for Quote</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="JENET_4G_GW.jpg" alt="JENET 4G GW">
-                <div class="product-details">
-                    <p><strong>Part Number:</strong> JENET 4G GW</p>
-                    <p><strong>Product Description:</strong> Intelligent Industrial Gateway</p>
-                    <p><strong>Packing Status:</strong> New in Box</p>
-                    <p><strong>C.O.O.:</strong> China</p>
-                </div>
-                <div class="btn-group">
-                    <button class="btn btn-red">Stock Sale</button>
-                    <a href="contactform.html" class="btn btn-green">Ask for Quote</a>
-                </div>
+    <!-- Centered Pop-up Screen -->
+    <div id="stockModal" class="modal-overlay">
+        <div class="modal-box">
+            <p>You will leave to another website, "Yes" to proceed, "No" returned to webpage</p>
+            <div class="modal-buttons">
+                <button class="btn btn-green" onclick="confirmRedirect()">Yes</button>
+                <button class="btn btn-red" onclick="closeModal()">No</button>
             </div>
         </div>
-    </section>
+    </div>
+
+    <script>
+        const productsData = [
+            { "partNo": "140DDI84100", "desc": "Discrete Input Module", "status": "New - Box with Seal", "coo": "China" },
+            { "partNo": "BMXCPS3500H", "desc": "Power Supply Module", "status": "New in Box", "coo": "Indonesia" },
+            { "partNo": "140CRP93200", "desc": "RIO Head-end Adaptor Module", "status": "New - Box with Seal", "coo": "France" },
+            { "partNo": "140AMM09000", "desc": "Analog Input Output Module", "status": "New - Box with Seal", "coo": "France" },
+            { "partNo": "BMXP342020", "desc": "Processor Module", "status": "New in Box", "coo": "France" },
+            { "partNo": "140ACI03000", "desc": "Analog Input Module", "status": "New - Box with Seal", "coo": "France" },
+            { "partNo": "JENET 4G GW", "desc": "Intelligent Industrial Gateway", "status": "New in Box", "coo": "China" }
+        ];
+
+        // Target eBay Store Link
+        const targetUrl = 'https://www.ebay.com.hk/sch/i.html?_nkw=success_way_2010&_sacat=0&_from=R40&_trksid=m570.l1313';
+
+        const container = document.getElementById('productContainer');
+
+        productsData.forEach(item => {
+            const cardHTML = `
+                <div class="product-card">
+                    <img src="${item.partNo}.jpg" alt="${item.partNo}" onerror="this.src='${item.partNo.replace(/ /g, '_')}.jpg'">
+                    <div class="product-details">
+                        <p><strong>Part Number:</strong> ${item.partNo}</p>
+                        <p><strong>Product Description:</strong> ${item.desc}</p>
+                        <p><strong>Packing Status:</strong> ${item.status}</p>
+                        <p><strong>C.O.O.:</strong> ${item.coo}</p>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-red" onclick="openModal()">Stock Sale</button>
+                        <a href="contactform.html" class="btn btn-green">Ask for Quote</a>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += cardHTML;
+        });
+
+        function openModal() {
+            document.getElementById('stockModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('stockModal').style.display = 'none';
+        }
+
+        function confirmRedirect() {
+            window.location.href = targetUrl;
+        }
+    </script>
 
 </body>
 </html>
