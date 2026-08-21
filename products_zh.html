@@ -48,7 +48,7 @@
         }
         .btn-blue:hover { background-color: #0d47a1; }
 
-        /* Updated Grid Layout: 2 Products per Row */
+        /* Grid Layout: 2 Products per Row */
         .product-grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -180,13 +180,13 @@
 
     <script>
         const productsData = [
-            { "partNo": "140DDI84100", "desc": "Discrete Input Module", "status": "New - Box with Seal (No Warranty)", "coo": "China", "stock": 0 },
-            { "partNo": "BMXCPS3500H", "desc": "Power Supply Module", "status": "New in Box No Warranty)", "coo": "Indonesia", "stock": 0 },
-            { "partNo": "140CRP93200", "desc": "RIO Head-end Adaptor Module", "status": "New - Box with Seal (No Warranty)", "coo": "France", "stock": 0 },
-            { "partNo": "140AMM09000", "desc": "Analog Input Output Module", "status": "New - Box with Seal (No Warranty)", "coo": "France", "stock": 0 },
-            { "partNo": "BMXP342020", "desc": "Processor Module", "status": "New in Box No Warranty)", "coo": "France", "stock": 0 },
-            { "partNo": "140ACI03000", "desc": "Analog Input Module", "status": "New - Box with Seal (No Warranty)", "coo": "France", "stock": 0 },
-            { "partNo": "JENET 4G GW", "desc": "Intelligent Industrial Gateway", "status": "New in Box No Warranty)", "coo": "China", "stock": 2 }
+            { "brand": "Schneider", "partNo": "140DDI84100", "desc": "Discrete Input Module", "status": "New - Box with Seal (No Warranty)", "coo": "China", "stock": 0 },
+            { "brand": "Schneider", "partNo": "BMXCPS3500H", "desc": "Power Supply Module", "status": "New in Box (No Warranty)", "coo": "Indonesia", "stock": 0 },
+            { "brand": "Schneider", "partNo": "140CRP93200", "desc": "RIO Head-end Adaptor Module", "status": "New - Box with Seal (No Warranty)", "coo": "France", "stock": 0 },
+            { "brand": "Schneider", "partNo": "140AMM09000", "desc": "Analog Input Output Module", "status": "New - Box with Seal (No Warranty)", "coo": "France", "stock": 0 },
+            { "brand": "Schneider", "partNo": "BMXP342020", "desc": "Processor Module", "status": "New in Box (No Warranty)", "coo": "France", "stock": 0 },
+            { "brand": "Schneider", "partNo": "140ACI03000", "desc": "Analog Input Module", "status": "New - Box with Seal (No Warranty)", "coo": "France", "stock": 0 },
+            { "brand": "JENET", "partNo": "JENET 4G GW", "desc": "Intelligent Industrial Gateway", "status": "New in Box (With Warranty)", "coo": "China", "stock": 0 }
         ];
 
         const targetUrl = 'https://www.ebay.com.hk/sch/i.html?_nkw=success_way_2010&_sacat=0&_from=R40&_trksid=m570.l1313';
@@ -205,6 +205,7 @@
                 <div class="product-card">
                     <img src="${item.partNo}.jpg" alt="${item.partNo}" onerror="this.src='${item.partNo.replace(/ /g, '_')}.jpg'">
                     <div class="product-details">
+                        <p><strong>Brand:</strong> ${item.brand}</p>
                         <p><strong>Part Number:</strong> ${item.partNo}</p>
                         <p><strong>Product Description:</strong> ${item.desc}</p>
                         <p><strong>Packing Status:</strong> ${item.status}</p>
