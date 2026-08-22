@@ -21,6 +21,17 @@
         }
         .nav-links a:hover { color: #b71c1c; }
 
+        .lang-btn {
+            border: 1px solid #b71c1c;
+            padding: 4px 10px;
+            border-radius: 4px;
+            color: #b71c1c !important;
+        }
+        .lang-btn:hover {
+            background-color: #b71c1c;
+            color: white !important;
+        }
+
         .main-content { position: relative; min-height: 80vh; background-color: #f9f9f9; padding-bottom: 50px; }
         .main-content::before {
             content: "";
@@ -43,7 +54,6 @@
         }
         .btn-blue:hover { background-color: #0d47a1; }
         
-        /* Grid Layout: 2 Products per Row */
         .product-grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -76,11 +86,9 @@
             transition: background-color 0.3s ease; color: #ffffff;
         }
 
-        /* Green Stock Sale Button */
         .btn-green { background-color: #2e7d32; }
         .btn-green:hover { background-color: #1b5e20; }
 
-        /* Red Sold Out Button */
         .btn-red { 
             background-color: #b71c1c; 
             cursor: not-allowed;
@@ -88,7 +96,6 @@
             pointer-events: none;
         }
 
-        /* Centered Pop-up Modal Styling */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -149,6 +156,7 @@
             <a href="products.html">Selling Products</a>
             <a href="contactinfo.html">Contact</a>
             <a href="login.html">Customer Login</a>
+            <a href="products_zh.html" class="lang-btn">中文</a>
         </div>
     </nav>
 
@@ -161,7 +169,6 @@
         <div class="product-grid" id="productContainer"></div>
     </section>
 
-    <!-- Centered Pop-up Screen -->
     <div id="stockModal" class="modal-overlay">
         <div class="modal-box">
             <p>You will leave to another website, "Yes" to proceed, "No" returned to webpage</p>
@@ -173,7 +180,6 @@
     </div>
 
     <script>
-        // Data extracted from products.xlsx including Brand field
         const productsData = [
             { "brand": "Schneider", "partNo": "140DDI84100", "desc": "Discrete Input Module", "status": "New - Box with Seal (No Warranty)", "coo": "China", "stock": 0 },
             { "brand": "Schneider", "partNo": "BMXCPS3500H", "desc": "Power Supply Module", "status": "New in Box (No Warranty)", "coo": "Indonesia", "stock": 0 },
