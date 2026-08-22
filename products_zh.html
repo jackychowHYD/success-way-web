@@ -40,15 +40,30 @@
         }
         h1 { color: #b71c1c; margin: 0; }
 
-        .btn-blue {
-            background-color: #1976d2; color: #ffffff; border: none;
-            padding: 10px 20px; font-size: 0.95rem; font-weight: 600;
-            border-radius: 4px; cursor: pointer; text-decoration: none;
-            display: inline-block; transition: background-color 0.3s ease;
+        .category-buttons {
+            display: flex;
+            gap: 10px;
         }
-        .btn-blue:hover { background-color: #0d47a1; }
 
-        /* Grid Layout: 2 Products per Row */
+        /* Borderless category button */
+        .category-btn {
+            background: transparent;
+            color: #333333;
+            border: none;
+            padding: 10px 15px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        /* Text turns blue on hover */
+        .category-btn:hover {
+            color: #1976d2;
+        }
+
         .product-grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -81,11 +96,9 @@
             transition: background-color 0.3s ease; color: #ffffff;
         }
 
-        /* Green Stock Sale Button */
         .btn-green { background-color: #2e7d32; }
         .btn-green:hover { background-color: #1b5e20; }
 
-        /* Red Sold Out Button */
         .btn-red { 
             background-color: #b71c1c; 
             cursor: not-allowed;
@@ -93,7 +106,6 @@
             pointer-events: none;
         }
 
-        /* Centered Pop-up Modal Styling */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -135,6 +147,7 @@
             .nav-links a { margin-left: 0; font-size: 0.9rem; }
             .header-section { flex-direction: column; gap: 15px; text-align: center; padding: 25px 5% 10px; }
             h1 { font-size: 1.8rem; }
+            .category-buttons { flex-wrap: wrap; justify-content: center; }
             .product-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -161,13 +174,15 @@
     <section class="main-content">
         <div class="header-section">
             <h1>龍昇精選產品</h1>
-            <button class="btn-blue">工業開關 (Industrial Switches)</button>
+            <div class="category-buttons">
+                <button class="category-btn">工業開關 (Industrial Switches)</button>
+                <button class="category-btn">其他 (Others)</button>
+            </div>
         </div>
 
         <div class="product-grid" id="productContainer"></div>
     </section>
 
-    <!-- Centered Pop-up Screen (Chinese Version) -->
     <div id="stockModal" class="modal-overlay">
         <div class="modal-box">
             <p>您即將前往另一個網站，按「確定」繼續，按「取消」返回網頁</p>
@@ -213,7 +228,7 @@
                     </div>
                     <div class="btn-group">
                         ${stockButtonHTML}
-                        <a href="contactform.html" class="btn btn-green">索取報價 (Ask for Quote)</a>
+                        <a href="contactform_zh.html" class="btn btn-green">索取報價 (Ask for Quote)</a>
                     </div>
                 </div>
             `;

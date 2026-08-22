@@ -46,13 +46,29 @@
         }
         h1 { color: #b71c1c; margin: 0; }
 
-        .btn-blue {
-            background-color: #1976d2; color: #ffffff; border: none;
-            padding: 10px 20px; font-size: 0.95rem; font-weight: 600;
-            border-radius: 4px; cursor: pointer; text-decoration: none;
-            display: inline-block; transition: background-color 0.3s ease;
+        .category-buttons {
+            display: flex;
+            gap: 10px;
         }
-        .btn-blue:hover { background-color: #0d47a1; }
+
+        /* Borderless category button */
+        .category-btn {
+            background: transparent;
+            color: #333333;
+            border: none;
+            padding: 10px 15px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        /* Text turns blue on hover */
+        .category-btn:hover {
+            color: #1976d2;
+        }
         
         .product-grid { 
             display: grid; 
@@ -137,6 +153,7 @@
             .nav-links a { margin-left: 0; font-size: 0.9rem; }
             .header-section { flex-direction: column; gap: 15px; text-align: center; padding: 25px 5% 10px; }
             h1 { font-size: 1.8rem; }
+            .category-buttons { flex-wrap: wrap; justify-content: center; }
             .product-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -163,7 +180,10 @@
     <section class="main-content">
         <div class="header-section">
             <h1>Success Way Products (龍昇精選產品)</h1>
-            <button class="btn-blue">Industrial Switches</button>
+            <div class="category-buttons">
+                <button class="category-btn">Industrial Switches</button>
+                <button class="category-btn">Others</button>
+            </div>
         </div>
 
         <div class="product-grid" id="productContainer"></div>
