@@ -51,12 +51,15 @@
             display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px; padding: 20px 5% 50px;
         }
+
+        /* Flexbox added to allow button anchoring to the bottom */
         .service-card {
             background: white; padding: 30px; border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-top: 5px solid #b71c1c;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
         .service-card h2 { color: #b71c1c; margin-top: 0; margin-bottom: 15px; }
-        .service-card ul { list-style-type: disc; padding-left: 20px; margin: 0; }
+        .service-card ul { list-style-type: disc; padding-left: 20px; margin: 0 0 20px 0; }
         .service-card li { margin-bottom: 10px; color: #555; padding-left: 5px; }
 
         .item-with-video {
@@ -82,6 +85,25 @@
         }
 
         .video-btn:hover {
+            background-color: #8e1515;
+        }
+
+        /* Service Request Button inside each card */
+        .card-request-btn {
+            align-self: flex-end;
+            display: inline-block;
+            background-color: #b71c1c;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .card-request-btn:hover {
             background-color: #8e1515;
         }
 
@@ -124,51 +146,63 @@
 
     <div class="services-container">
         <div class="service-card">
-            <h2>實驗室測試</h2>
-            <ul>
-                <li>電氣性能測試</li>
-                <li>機械性能測試</li>
-                <li>化學成分測試</li>
-                <li>可靠性測試</li>
-                <li>環境模擬測試</li>
-                <li>材料分析測試</li>
-            </ul>
+            <div>
+                <h2>實驗室測試</h2>
+                <ul>
+                    <li>電氣性能測試</li>
+                    <li>機械性能測試</li>
+                    <li>化學成分測試</li>
+                    <li>可靠性測試</li>
+                    <li>環境模擬測試</li>
+                    <li>材料分析測試</li>
+                </ul>
+            </div>
+            <a href="contactform_zh.html" class="card-request-btn">申請此項服務 &rarr;</a>
         </div>
 
         <div class="service-card">
-            <h2>工廠審核</h2>
-            <ul>
-                <li>工廠實地拜訪</li>
-                <li>品質系統審核</li>
-                <li>生產制程審核</li>
-                <li>ISO 體系審核</li>
-                <li>可持續發展審核</li>
-                <li>客戶標準審核服務</li>
-            </ul>
+            <div>
+                <h2>工廠審核</h2>
+                <ul>
+                    <li>工廠實地拜訪</li>
+                    <li>品質系統審核</li>
+                    <li>生產制程審核</li>
+                    <li>ISO 體系審核</li>
+                    <li>可持續發展審核</li>
+                    <li>客戶標準審核服務</li>
+                </ul>
+            </div>
+            <a href="contactform_zh.html" class="card-request-btn">申請此項服務 &rarr;</a>
         </div>
 
         <div class="service-card">
-            <h2>產品檢驗</h2>
-            <ul>
-                <li>生產前檢驗</li>
-                <li>生產中檢驗</li>
-                <li>
-                    <div class="item-with-video">
-                        <span>出貨前檢驗</span>
-                        <a href="PSI_zh.html" class="video-btn">&#9654; 影片</a>
-                    </div>
-                </li>
-            </ul>
+            <div>
+                <h2>產品檢驗</h2>
+                <ul>
+                    <li>生產前檢驗</li>
+                    <li>生產中檢驗</li>
+                    <li>
+                        <div class="item-with-video">
+                            <span>出貨前檢驗</span>
+                            <a href="PSI_zh.html" class="video-btn">&#9654; 影片</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <a href="contactform_zh.html" class="card-request-btn">申請此項服務 &rarr;</a>
         </div>
 
         <div class="service-card">
-            <h2>零部件採購</h2>
-            <ul>
-                <li>優質供應商識別</li>
-                <li>技術可行性評估</li>
-                <li>量產過程監控</li>
-                <li>物流與供應鏈協調</li>
-            </ul>
+            <div>
+                <h2>零部件採購</h2>
+                <ul>
+                    <li>優質供應商識別</li>
+                    <li>技術可行性評估</li>
+                    <li>量產過程監控</li>
+                    <li>物流與供應鏈協調</li>
+                </ul>
+            </div>
+            <a href="contactform_zh.html" class="card-request-btn">申請此項服務 &rarr;</a>
         </div>
     </div>
 

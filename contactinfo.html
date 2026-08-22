@@ -42,9 +42,28 @@
         .info-block {
             background-color: #e8f5e9; border: 1px solid #c8e6c9; padding: 30px;
             border-radius: 12px; width: 400px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: left;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
         .info-block h2 { color: #2e7d32; text-align: center; margin-bottom: 20px; }
         .info-block p { margin: 10px 0; color: #333; font-weight: 500; }
+
+        /* Enquiry Button Styling */
+        .enquiry-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 18px;
+            background-color: #b71c1c;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        .enquiry-btn:hover {
+            background-color: #8e1515;
+        }
 
         @media (max-width: 768px) {
             .navbar { flex-direction: column; text-align: center; gap: 10px; }
@@ -65,7 +84,7 @@
         <div class="logo-area">
             <img src="Success Way Industrial Company Logo.jpeg" alt="SW Logo" class="logo-img">
             <img src="HYD Company LOGO.jpg" alt="HYD Logo" class="logo-img">
-            <span>Success Way Industrial Company Limited</span>
+            <span>Success Way Industrial Limited (龍昇實業)</span>
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
@@ -85,18 +104,24 @@
     <div class="container">
         <!-- Product Support Block -->
         <div class="info-block">
-            <h2>Product Support</h2>
-            <p>Name: Simon Cheung</p>
-            <p>Phone: 852-9092 5713, 86-137 1515 1904</p>
-            <p>Email: sales@swhydhk.com</p>
+            <div>
+                <h2>Product Support</h2>
+                <p>Name: Simon Cheung</p>
+                <p>Phone No. (HK) : 852-9092 5713</p>
+                <p>Phone No. (China) : 86-137 1515 1904</p>
+            </div>
+            <a href="contactform.html" class="enquiry-btn">Send email for Enquiry</a>
         </div>
 
         <!-- Service Support Block -->
         <div class="info-block">
-            <h2>Service Support</h2>
-            <p>Name: Jacky Chow</p>
-            <p>Phone: 852- 9333 4238, 86-131 1380 7981</p>
-            <p>Email: services@swhydhk.com</p>
+            <div>
+                <h2>Service Support</h2>
+                <p>Name: Jacky Chow</p>
+                <p>Phone No. (HK) : 852- 9333 4238</p>
+                <p>Phone No. (China) : 86-131 1380 7981</p>
+            </div>
+            <a href="contactform.html" class="enquiry-btn">Send email for Enquiry</a>
         </div>
     </div>
 
