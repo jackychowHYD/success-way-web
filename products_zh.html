@@ -20,6 +20,7 @@
             font-weight: 600; transition: color 0.3s ease; display: inline-block;
         }
         .nav-links a:hover { color: #b71c1c; }
+        .nav-links a.active { color: #1976d2 !important; font-weight: bold; }
 
         .lang-btn {
             border: 1px solid #b71c1c; padding: 4px 10px; border-radius: 4px; color: #b71c1c !important;
@@ -57,6 +58,10 @@
             text-decoration: none;
             display: inline-block;
             transition: color 0.3s ease;
+        }
+
+        .category-btn.blue-text {
+            color: #1976d2;
         }
 
         /* Text turns blue on hover */
@@ -164,7 +169,7 @@
             <a href="index_zh.html">首頁</a>
             <a href="about_zh.html">關於我們</a>
             <a href="services_zh.html">服務項目</a>
-            <a href="products_zh.html">銷售產品</a>
+            <a href="products_zh.html" class="active">銷售產品</a>
             <a href="contactinfo_zh.html">聯絡我們</a>
             <a href="login_zh.html">客戶登錄</a>
             <a href="products.html" class="lang-btn">English</a>
@@ -175,7 +180,7 @@
         <div class="header-section">
             <h1>龍昇精選產品</h1>
             <div class="category-buttons">
-                <button class="category-btn">工業開關 (Industrial Switches)</button>
+                <button class="category-btn blue-text">工業開關 (Industrial Switches)</button>
                 <button class="category-btn">其他 (Others)</button>
             </div>
         </div>

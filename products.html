@@ -20,6 +20,7 @@
             font-weight: 600; transition: color 0.3s ease; display: inline-block;
         }
         .nav-links a:hover { color: #b71c1c; }
+        .nav-links a.active { color: #1976d2 !important; font-weight: bold; }
 
         .lang-btn {
             border: 1px solid #b71c1c;
@@ -63,6 +64,10 @@
             text-decoration: none;
             display: inline-block;
             transition: color 0.3s ease;
+        }
+
+        .category-btn.blue-text {
+            color: #1976d2;
         }
 
         /* Text turns blue on hover */
@@ -170,7 +175,7 @@
             <a href="index.html">Home</a>
             <a href="about.html">About Us</a>
             <a href="services.html">Services</a>
-            <a href="products.html">Selling Products</a>
+            <a href="products.html" class="active">Selling Products</a>
             <a href="contactinfo.html">Contact</a>
             <a href="login.html">Customer Login</a>
             <a href="products_zh.html" class="lang-btn">中文</a>
@@ -181,7 +186,7 @@
         <div class="header-section">
             <h1>Success Way Products (龍昇精選產品)</h1>
             <div class="category-buttons">
-                <button class="category-btn">Industrial Switches</button>
+                <button class="category-btn blue-text">Industrial Switches</button>
                 <button class="category-btn">Others</button>
             </div>
         </div>
