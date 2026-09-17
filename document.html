@@ -114,7 +114,7 @@
             background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;
         }
         .modal-content {
-            background: white; border-radius: 8px; width: 80%; max-width: 800px; height: 80vh;
+            background: white; border-radius: 8px; width: 85%; max-width: 900px; height: 85vh;
             padding: 20px; display: flex; flex-direction: column; box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
@@ -371,7 +371,9 @@
             const modalBody = document.getElementById('modalBody');
             
             if (url && url !== '#') {
-                modalBody.innerHTML = `<iframe src="${url}"></iframe>`;
+                // Use Google Docs Viewer to force inline web preview instead of triggering a download dialog
+                const previewUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(url) + "&embedded=true";
+                modalBody.innerHTML = `<iframe src="${previewUrl}"></iframe>`;
             } else {
                 modalBody.innerHTML = `<p style="padding:20px; color:#666; font-weight:bold;">No preview file attached.</p>`;
             }
@@ -403,11 +405,12 @@
             uploadBtn.disabled = true;
 
             try {
-                const r2Key = file.name;
-                const renamedFile = new File([file], r2Key, { type: file.type });
+                // Keep files uploaded under Check-List category in its dedicated folder "Check-List/"
+                const folderPrefix = category === 'checklist' ? 'Check-List/' : '';
+                const r2Key = folderPrefix + file.name;
 
                 const formData = new FormData();
-                formData.append('file', renamedFile);
+                formData.append('file', file, r2Key);
 
                 const response = await fetch(CLOUDFLARE_WORKER_URL + "/", {
                     method: 'POST',
@@ -427,7 +430,7 @@
 
                     localStorage.setItem('documents', JSON.stringify(docs));
                     renderDocuments();
-                    alert(`File successfully uploaded to Cloudflare R2 and assigned to: ${assignedTo}`);
+                    alert(`File successfully uploaded to Cloudflare R2 folder '${folderPrefix || 'root'}' and assigned to: ${assignedTo}`);
                     document.getElementById('docTitle').value = '';
                     fileInput.value = '';
                 } else {

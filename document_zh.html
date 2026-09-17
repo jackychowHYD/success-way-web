@@ -123,7 +123,7 @@
             background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;
         }
         .modal-content {
-            background: white; border-radius: 8px; width: 80%; max-width: 800px; height: 80vh;
+            background: white; border-radius: 8px; width: 85%; max-width: 900px; height: 85vh;
             padding: 20px; display: flex; flex-direction: column; box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
@@ -209,7 +209,7 @@
                     <option value="inspection">出貨檢驗報告</option>
                     <option value="audit">工廠審核報告</option>
                     <option value="testing">實驗室測試報告</option>
-                    <option value="checklist">檢查清單 Check-List</option>
+                    <option value="checklist">檢查清單</option>
                     <option value="others">其他文檔</option>
                 </select>
                 <label style="font-size: 0.8rem; font-weight: bold;">權限設置：</label>
@@ -238,7 +238,7 @@
             <ul id="list-testing" class="doc-list"></ul>
         </div>
         <div class="doc-card">
-            <h2>&#128221; 檢查清單 Check-List</h2>
+            <h2>&#128221; 檢查清單</h2>
             <ul id="list-checklist" class="doc-list"></ul>
         </div>
         <div class="doc-card">
@@ -381,7 +381,9 @@
             const modalBody = document.getElementById('modalBody');
             
             if (url && url !== '#') {
-                modalBody.innerHTML = `<iframe src="${url}"></iframe>`;
+                // 使用 Google Docs Viewer 強制在網頁彈窗中預覽檔案，防止直接觸發瀏覽器下載
+                const previewUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(url) + "&embedded=true";
+                modalBody.innerHTML = `<iframe src="${previewUrl}"></iframe>`;
             } else {
                 modalBody.innerHTML = `<p style="padding:20px; color:#666; font-weight:bold;">未附加預覽檔案。</p>`;
             }
@@ -413,11 +415,12 @@
             uploadBtn.disabled = true;
 
             try {
-                const r2Key = file.name;
-                const renamedFile = new File([file], r2Key, { type: file.type });
+                // 將「檢查清單」類別的上傳檔案統一存放在獨立資料夾 "Check-List/" 內
+                const folderPrefix = category === 'checklist' ? 'Check-List/' : '';
+                const r2Key = folderPrefix + file.name;
 
                 const formData = new FormData();
-                formData.append('file', renamedFile);
+                formData.append('file', file, r2Key);
 
                 const response = await fetch(CLOUDFLARE_WORKER_URL + "/", {
                     method: 'POST',
@@ -437,7 +440,7 @@
 
                     localStorage.setItem('documents', JSON.stringify(docs));
                     renderDocuments();
-                    alert(`檔案成功上傳至 Cloudflare R2 並分配給：${assignedTo}`);
+                    alert(`檔案成功上傳至 Cloudflare R2 資料夾 '${folderPrefix || '根目錄'}' 並分配給：${assignedTo}`);
                     document.getElementById('docTitle').value = '';
                     fileInput.value = '';
                 } else {
