@@ -93,11 +93,6 @@
         .user-tag { color: #b71c1c; font-weight: bold; }
 
         .btn-group { display: flex; gap: 6px; }
-        .review-btn {
-            background-color: #0288d1; color: white; border: none; padding: 6px 10px;
-            border-radius: 4px; font-weight: 600; font-size: 0.85rem; cursor: pointer; text-decoration: none;
-        }
-        .review-btn:hover { background-color: #01579b; }
         .download-btn {
             background-color: #b71c1c; color: white; text-decoration: none; padding: 6px 12px;
             border-radius: 4px; font-weight: 600; font-size: 0.85rem; transition: background-color 0.3s;
@@ -107,21 +102,6 @@
             background-color: #ff4d4d; color: white; border: none; padding: 6px 10px;
             border-radius: 4px; font-weight: 600; font-size: 0.85rem; cursor: pointer;
         }
-
-        /* Document Preview Modal */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;
-        }
-        .modal-content {
-            background: white; border-radius: 8px; width: 85%; max-width: 900px; height: 85vh;
-            padding: 20px; display: flex; flex-direction: column; box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .modal-title { font-size: 1.2rem; font-weight: bold; color: #b71c1c; }
-        .close-modal { background: #ff4d4d; color: white; border: none; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        .modal-body { flex: 1; border: 1px solid #ccc; border-radius: 4px; overflow: hidden; background: #f9f9f9; display: flex; align-items: center; justify-content: center; }
-        .modal-body iframe { width: 100%; height: 100%; border: none; }
 
         .back-footer { text-align: center; margin-bottom: 50px; }
         .back-btn {
@@ -237,17 +217,6 @@
         </div>
     </div>
 
-    <!-- File Review Modal Window -->
-    <div id="reviewModal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span id="modalDocTitle" class="modal-title">Document Preview</span>
-                <button class="close-modal" onclick="closeModal()">Close Preview &times;</button>
-            </div>
-            <div id="modalBody" class="modal-body"></div>
-        </div>
-    </div>
-
     <div class="back-footer">
         <a href="login.html" class="back-btn" onclick="sessionStorage.clear()">Logout</a>
     </div>
@@ -355,7 +324,6 @@
                                     <span class="doc-meta">Date: ${d.date} ${isAdmin ? `&bull; Access: <span class="user-tag">${d.assignedTo}</span>` : ''}</span>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="review-btn" onclick="reviewDoc('${d.title}', '${downloadUrl}')">Review</button>
                                     <a href="${downloadUrl}" download target="_blank" class="download-btn" onclick="trackDownload('${d.title}')">Download</a>
                                     ${isAdmin ? `<button class="delete-btn" onclick="deleteDoc(${d.id}, '${d.r2Key}')">Delete</button>` : ''}
                                 </div>
@@ -364,25 +332,6 @@
                     });
                 }
             });
-        }
-
-        function reviewDoc(title, url) {
-            document.getElementById('modalDocTitle').innerText = title;
-            const modalBody = document.getElementById('modalBody');
-            
-            if (url && url !== '#') {
-                // Use Google Docs Viewer to force inline web preview instead of triggering a download dialog
-                const previewUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(url) + "&embedded=true";
-                modalBody.innerHTML = `<iframe src="${previewUrl}"></iframe>`;
-            } else {
-                modalBody.innerHTML = `<p style="padding:20px; color:#666; font-weight:bold;">No preview file attached.</p>`;
-            }
-            document.getElementById('reviewModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('reviewModal').style.display = 'none';
-            document.getElementById('modalBody').innerHTML = '';
         }
 
         function trackDownload(docTitle) {
@@ -405,7 +354,6 @@
             uploadBtn.disabled = true;
 
             try {
-                // Keep files uploaded under Check-List category in its dedicated folder "Check-List/"
                 const folderPrefix = category === 'checklist' ? 'Check-List/' : '';
                 const r2Key = folderPrefix + file.name;
 
