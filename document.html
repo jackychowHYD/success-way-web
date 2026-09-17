@@ -196,9 +196,10 @@
                 <h3>Upload to Success Way Database</h3>
                 <input type="text" id="docTitle" placeholder="Document Title" required>
                 <select id="docCategory">
-                    <option value="inspection">Inspection Report</option>
+                    <option value="inspection">Inspection Document</option>
                     <option value="audit">Audit Report</option>
                     <option value="testing">Testing Report</option>
+                    <option value="checklist">Check-List</option>
                     <option value="others">Others</option>
                 </select>
                 <label style="font-size: 0.8rem; font-weight: bold;">Access Right:</label>
@@ -215,7 +216,7 @@
     <!-- Document Categories Grid -->
     <div class="sections-container">
         <div class="doc-card">
-            <h2>&#128196; Inspection Reports</h2>
+            <h2>&#128196; Inspection Document</h2>
             <ul id="list-inspection" class="doc-list"></ul>
         </div>
         <div class="doc-card">
@@ -227,6 +228,10 @@
             <ul id="list-testing" class="doc-list"></ul>
         </div>
         <div class="doc-card">
+            <h2>&#128221; Check-List</h2>
+            <ul id="list-checklist" class="doc-list"></ul>
+        </div>
+        <div class="doc-card">
             <h2>&#128193; Others</h2>
             <ul id="list-others" class="doc-list"></ul>
         </div>
@@ -236,7 +241,7 @@
     <div id="reviewModal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <span id="modalDocTitle" class="modal-title">Document Review</span>
+                <span id="modalDocTitle" class="modal-title">Document Preview</span>
                 <button class="close-modal" onclick="closeModal()">Close Preview &times;</button>
             </div>
             <div id="modalBody" class="modal-body"></div>
@@ -326,7 +331,7 @@
 
         function renderDocuments() {
             const docs = JSON.parse(localStorage.getItem('documents')) || [];
-            const categories = ['inspection', 'audit', 'testing', 'others'];
+            const categories = ['inspection', 'audit', 'testing', 'checklist', 'others'];
 
             categories.forEach(cat => {
                 const listElem = document.getElementById(`list-${cat}`);

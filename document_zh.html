@@ -209,6 +209,7 @@
                     <option value="inspection">出貨檢驗報告</option>
                     <option value="audit">工廠審核報告</option>
                     <option value="testing">實驗室測試報告</option>
+                    <option value="checklist">檢查清單 Check-List</option>
                     <option value="others">其他文檔</option>
                 </select>
                 <label style="font-size: 0.8rem; font-weight: bold;">權限設置：</label>
@@ -225,16 +226,20 @@
     <!-- 文檔分類網格 -->
     <div class="sections-container">
         <div class="doc-card">
-            <h2>&#128196; 檢驗報告</h2>
+            <h2>&#128196; 出貨檢驗報告</h2>
             <ul id="list-inspection" class="doc-list"></ul>
         </div>
         <div class="doc-card">
-            <h2>&#128203; 審核報告</h2>
+            <h2>&#128203; 工廠審核報告</h2>
             <ul id="list-audit" class="doc-list"></ul>
         </div>
         <div class="doc-card">
-            <h2>&#129514; 測試報告</h2>
+            <h2>&#129514; 實驗室測試報告</h2>
             <ul id="list-testing" class="doc-list"></ul>
+        </div>
+        <div class="doc-card">
+            <h2>&#128221; 檢查清單 Check-List</h2>
+            <ul id="list-checklist" class="doc-list"></ul>
         </div>
         <div class="doc-card">
             <h2>&#128193; 其他文檔</h2>
@@ -336,7 +341,7 @@
 
         function renderDocuments() {
             const docs = JSON.parse(localStorage.getItem('documents')) || [];
-            const categories = ['inspection', 'audit', 'testing', 'others'];
+            const categories = ['inspection', 'audit', 'testing', 'checklist', 'others'];
 
             categories.forEach(cat => {
                 const listElem = document.getElementById(`list-${cat}`);
